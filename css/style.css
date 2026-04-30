@@ -1,0 +1,454 @@
+:root {
+  --blue: #0B3D91;
+  --blue-dark: #061f4f;
+  --purple: #7b1fa2;
+  --purple-dark: #4a0f78;
+  --pink: #d62cc7;
+  --pink-light: #f4b6ff;
+  --gold: #FFD700;
+  --white: #ffffff;
+  --soft-white: rgba(255, 255, 255, 0.78);
+  --glass: rgba(255, 255, 255, 0.14);
+  --glass-border: rgba(255, 255, 255, 0.28);
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--white);
+  background: var(--blue-dark);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* HERO SECTION */
+#hero-section {
+  position: relative;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* BACKGROUND IMAGE */
+#bg-image-wrapper {
+  position: absolute;
+  inset: 0;
+  background-image: url('../images/sofo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+/* BRIGHT COLOR OVERLAY */
+#hero-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(214, 44, 199, 0.70),
+      rgba(123, 31, 162, 0.66),
+      rgba(11, 61, 145, 0.60)
+    );
+  z-index: 1;
+}
+
+/* MAIN CONTENT */
+#main-content {
+  position: relative;
+  z-index: 2;
+  width: 92%;
+  max-width: 1100px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 38px 20px 50px;
+}
+
+/* TOP BAR */
+#topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 90px;
+}
+
+#church-logo img {
+  width: 72px;
+  height: 72px;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 800;
+
+  backdrop-filter: blur(10px);
+}
+
+#coming-pill {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--white);
+  padding: 10px 24px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.16);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(10px);
+}
+
+/* HERO TEXT */
+#hero-text {
+  max-width: 820px;
+}
+
+#eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+
+#eyebrow i {
+  color: var(--gold);
+  font-size: 1rem;
+}
+
+#main-heading {
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: clamp(2.8rem, 6vw, 5.4rem);
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 30px;
+  letter-spacing: -2px;
+  text-shadow: 0 10px 35px rgba(0, 0, 0, 0.28);
+}
+
+#church-name {
+  font-family: var(--font-heading);
+  font-size: clamp(1.4rem, 3vw, 2.1rem);
+  font-weight: 800;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+#church-district {
+  color: var(--white);
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 22px;
+}
+
+#coming-soon-message {
+  color: var(--white);
+  font-size: 1.08rem;
+  font-weight: 500;
+  line-height: 1.55;
+  max-width: 760px;
+  margin-bottom: 34px;
+}
+
+/* COUNTDOWN */
+#countdown-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 38px;
+}
+
+.c-box {
+  min-width: 125px;
+  padding: 18px 22px;
+  border-radius: 16px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+}
+
+.c-box span,
+.c-num {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1;
+}
+
+.c-box small,
+.c-lbl {
+  display: block;
+  margin-top: 7px;
+  color: var(--soft-white);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.c-sep {
+  display: none;
+}
+
+/* CONTACT + SOCIAL AREA */
+#bottom-strip {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 48px;
+  margin-top: 28px;
+  flex-wrap: wrap;
+  max-width: 920px;
+}
+
+/* CONTACT INFO */
+#contact-info {
+  flex: 1;
+  min-width: 310px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+#contact-info p {
+  margin: 0;
+  color: var(--white);
+  font-size: 1.03rem;
+  font-weight: 600;
+  line-height: 1.45;
+  display: flex;
+  align-items: center;
+}
+
+#contact-info i {
+  color: var(--gold);
+  margin-right: 14px;
+  width: 22px;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+#contact-info a {
+  color: var(--white);
+  text-decoration: none;
+  word-break: break-word;
+}
+
+#contact-info a:hover {
+  color: var(--gold);
+}
+
+/* SOCIAL + BUTTON */
+#social-and-button,
+#right-col {
+  min-width: 230px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+#social-icons {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: nowrap;
+}
+
+#social-icons a,
+.s-btn {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, var(--pink), var(--purple));
+  color: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: 1.05rem;
+  transition: 0.3s ease;
+  box-shadow: 0 10px 24px rgba(214, 44, 199, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+}
+
+#social-icons a:hover,
+.s-btn:hover {
+  transform: translateY(-4px);
+  background: var(--gold);
+  color: var(--blue);
+}
+
+/* CTA BUTTON */
+#cta-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--gold);
+  color: var(--blue);
+  padding: 17px 48px;
+  border-radius: 0 0 0 32px;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: 800;
+  font-size: 1rem;
+  box-shadow: 0 14px 30px rgba(255, 215, 0, 0.35);
+  transition: 0.3s ease;
+  white-space: nowrap;
+}
+
+#cta-button i {
+  color: var(--blue);
+}
+
+#cta-button:hover {
+  background: var(--white);
+  color: var(--purple);
+  transform: translateY(-3px);
+}
+
+#cta-button:hover i {
+  color: var(--purple);
+}
+
+/* FOOTER */
+footer,
+#page-footer {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding: 18px 15px;
+  background: var(--purple-dark);
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.85rem;
+}
+
+/* ANIMATION */
+.fade-in,
+#hero-text {
+  animation: fadeInUp 0.9s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* TABLET */
+@media (max-width: 900px) {
+  #topbar {
+    margin-bottom: 70px;
+  }
+
+  #main-content {
+    width: 94%;
+    padding-top: 28px;
+  }
+
+  #bottom-strip {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  #social-and-button,
+  #right-col {
+    align-items: flex-start;
+  }
+
+  #cta-button {
+    border-radius: 18px;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  #main-content {
+    padding: 24px 14px 40px;
+  }
+
+  #topbar {
+    margin-bottom: 60px;
+  }
+
+  #church-logo {
+    width: 58px;
+    height: 58px;
+    font-size: 0.7rem;
+  }
+
+  #coming-pill {
+    font-size: 0.75rem;
+    padding: 9px 14px;
+  }
+
+  #eyebrow {
+    font-size: 0.85rem;
+    gap: 8px;
+  }
+
+  #main-heading {
+    font-size: clamp(2.3rem, 12vw, 3.4rem);
+    letter-spacing: -1px;
+  }
+
+  #church-district {
+    font-size: 1rem;
+  }
+
+  #coming-soon-message {
+    font-size: 0.95rem;
+  }
+
+  #countdown-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .c-box {
+    min-width: unset;
+    padding: 16px 12px;
+  }
+
+  #contact-info {
+    min-width: 100%;
+  }
+
+  #contact-info p {
+    font-size: 0.95rem;
+  }
+
+  #social-icons {
+    flex-wrap: wrap;
+  }
+
+  #cta-button {
+    width: 100%;
+    padding: 16px 24px;
+  }
+}
