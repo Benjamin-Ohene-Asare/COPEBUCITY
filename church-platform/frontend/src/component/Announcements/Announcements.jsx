@@ -1,7 +1,7 @@
 import React from "react";
 import "./Announcements.css";
 
-import announcement1 from "../../assets/LOGO.png";
+import announcement1 from "../../assets/logo.png";
 
 const announcements = [
   {
