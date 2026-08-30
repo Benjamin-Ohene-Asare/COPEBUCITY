@@ -1,0 +1,240 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+/* =====================================
+   HEADER
+===================================== */
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+
+  z-index: 1000;
+
+  background: transparent;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.header {
+  width: 100%;
+  height: 78px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 10%;
+}
+
+
+/* =====================================
+   LOGO / CHURCH NAME
+===================================== */
+
+.header h2 {
+ 
+
+  color: #ffffff;
+
+  font-size: 18px;
+
+
+}
+
+.header img{
+  width: 60px;
+}
+.logo{
+  display: flex;
+  align-items: center;
+  justify-content: center
+
+}
+/* =====================================
+   NAVIGATION
+===================================== */
+
+.nav {
+  display: flex;
+  align-items: center;
+
+  gap: 34px;
+}
+
+.nav a {
+  position: relative;
+
+  color: rgba(255, 255, 255, 0.9);
+
+  font-size: 14px;
+  font-weight: 500;
+
+  transition: color 0.3s ease;
+}
+
+.nav a:hover {
+  color: #ffd447;
+}
+
+
+/* SMALL HOVER LINE */
+
+.nav a::after {
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+  bottom: -8px;
+
+  width: 0;
+  height: 2px;
+
+  background: #ffd447;
+
+  transition: width 0.3s ease;
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+
+/* =====================================
+   MENU BUTTON
+===================================== */
+
+.menu-btn {
+  display: none;
+
+  border: none;
+
+  background: transparent;
+
+  color: #ffffff;
+
+  font-size: 29px;
+
+  cursor: pointer;
+
+  z-index: 1002;
+}
+
+
+/* =====================================
+   TABLET
+===================================== */
+
+@media (max-width: 950px) {
+
+  .header {
+    padding: 0 5%;
+  }
+
+  .nav {
+    gap: 20px;
+  }
+
+  .nav a {
+    font-size: 13px;
+  }
+}
+
+
+/* =====================================
+   MOBILE
+===================================== */
+
+@media (max-width: 768px) {
+
+  .header {
+    height: 70px;
+
+    padding: 0 22px;
+  }
+
+  .header h2 {
+    font-size: 21px;
+  }
+
+  .menu-btn {
+    display: block;
+  }
+
+
+  /* MOBILE NAV */
+
+  .nav {
+    position: absolute;
+
+    top: 70px;
+    left: 0;
+
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    gap: 0;
+
+    padding: 15px 22px 25px;
+
+    background: rgba(3, 20, 61, 0.96);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transform: translateY(-10px);
+
+    transition:
+      opacity 0.3s ease,
+      visibility 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .nav.active {
+    opacity: 1;
+    visibility: visible;
+
+    transform: translateY(0);
+  }
+
+
+  .nav a {
+    width: 100%;
+
+    padding: 15px 0;
+
+    color: #ffffff;
+
+    font-size: 14px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .nav a:last-child {
+    border-bottom: none;
+  }
+
+  .nav a::after {
+    display: none;
+  }
+
+  .nav a:hover {
+    color: #ffd447;
+  }
+}

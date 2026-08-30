@@ -1,0 +1,283 @@
+.about-section {
+  width: 100%;
+  padding: 110px 7%;
+  background: #ffffff;
+}
+
+.about-container {
+  width: 100%;
+  max-width: 1350px;
+
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  align-items: center;
+
+  gap: 90px;
+}
+
+
+/* IMAGE */
+
+.about-image-wrapper {
+  position: relative;
+
+  width: 100%;
+  height: 580px;
+}
+
+.about-image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius: 6px;
+}
+
+
+/* SMALL CARD ON IMAGE */
+
+.about-badge {
+  position: absolute;
+
+  right: -35px;
+  bottom: 35px;
+
+  width: 230px;
+
+  padding: 25px;
+
+  background: #092b6b;
+
+  color: #ffffff;
+
+  border-left: 5px solid #ffd447;
+}
+
+.about-badge h3 {
+  font-size: 20px;
+
+  margin-bottom: 6px;
+}
+
+.about-badge p {
+  font-size: 13px;
+
+  color: rgba(255, 255, 255, 0.75);
+}
+
+
+/* RIGHT CONTENT */
+
+.about-content {
+  max-width: 620px;
+}
+
+.about-label {
+  display: block;
+
+  color: #d6a900;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 18px;
+}
+
+.about-content h2 {
+  font-size: clamp(38px, 4vw, 58px);
+
+  line-height: 1.08;
+
+  color: #10265d;
+
+  margin-bottom: 28px;
+}
+
+.about-content h2 span {
+  color: #d6a900;
+}
+
+.about-text {
+  color: #697386;
+
+  font-size: 17px;
+
+  line-height: 1.8;
+
+  margin-bottom: 18px;
+}
+
+
+/* MISSION / VISION */
+
+.about-values {
+  margin-top: 35px;
+  margin-bottom: 35px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 25px;
+}
+
+.about-value {
+  display: flex;
+
+  gap: 20px;
+}
+
+.about-value > span {
+  min-width: 45px;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #edf3ff;
+
+  color: #135fd7;
+
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.about-value h4 {
+  color: #10265d;
+
+  font-size: 18px;
+
+  margin-bottom: 7px;
+}
+
+.about-value p {
+  color: #697386;
+
+  font-size: 15px;
+
+  line-height: 1.6;
+}
+
+
+/* BUTTON */
+
+.about-btn {
+  border: none;
+
+  background: #0b4db5;
+  color: #ffffff;
+
+  padding: 16px 32px;
+
+  border-radius: 40px;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.about-btn:hover {
+  background: #ffd447;
+  color: #092b6b;
+
+  transform: translateY(-2px);
+}
+
+
+/* TABLET */
+
+@media (max-width: 1000px) {
+
+  .about-container {
+    gap: 50px;
+  }
+
+  .about-image-wrapper {
+    height: 500px;
+  }
+
+  .about-badge {
+    right: -15px;
+  }
+
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .about-section {
+    padding: 75px 6%;
+  }
+
+  .about-container {
+    grid-template-columns: 1fr;
+
+    gap: 55px;
+  }
+
+  .about-image-wrapper {
+    height: 430px;
+  }
+
+  .about-badge {
+    right: 15px;
+    bottom: 20px;
+
+    width: 210px;
+  }
+
+  .about-content {
+    max-width: 100%;
+  }
+
+  .about-content h2 {
+    font-size: 39px;
+  }
+
+}
+
+
+/* SMALL PHONE */
+
+@media (max-width: 480px) {
+
+  .about-section {
+    padding: 60px 5%;
+  }
+
+  .about-image-wrapper {
+    height: 360px;
+  }
+
+  .about-badge {
+    width: 185px;
+
+    padding: 18px;
+  }
+
+  .about-badge h3 {
+    font-size: 17px;
+  }
+
+  .about-content h2 {
+    font-size: 33px;
+  }
+
+  .about-text {
+    font-size: 15px;
+  }
+
+}

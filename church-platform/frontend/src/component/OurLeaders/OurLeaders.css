@@ -1,0 +1,243 @@
+.leaders-section {
+  width: 100%;
+  background: #02091d;
+  padding: 100px 10%;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.leaders-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+/* =========================
+   HEADING
+========================= */
+
+.leaders-heading {
+  margin-bottom: 55px;
+}
+
+.leaders-small-title {
+  display: block;
+  margin-bottom: 12px;
+
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 4px;
+
+  color: #ffc800;
+}
+
+.leaders-heading h2 {
+  margin: 0;
+
+  font-size: clamp(42px, 5vw, 72px);
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -2px;
+}
+
+.leaders-heading h2 span {
+  color: #347ff4;
+}
+
+.leaders-heading p {
+  max-width: 600px;
+  margin-top: 20px;
+
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+
+/* =========================
+   GRID
+========================= */
+
+.leaders-grid {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 34px;
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.leader-card {
+  position: relative;
+
+  width: 100%;
+  height: 520px;
+
+  border-radius: 28px;
+  overflow: hidden;
+
+  background: #07132c;
+}
+
+.leader-image {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+
+  transition: transform 0.5s ease;
+}
+
+.leader-card:hover .leader-image {
+  transform: scale(1.04);
+}
+
+
+/* DARK IMAGE GRADIENT */
+
+.leader-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(1, 7, 24, 0.92) 0%,
+      rgba(1, 7, 24, 0.35) 42%,
+      rgba(1, 7, 24, 0.02) 72%
+    );
+}
+
+
+/* =========================
+   BADGE
+========================= */
+
+.leader-badge {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+
+  background: #347ff4;
+  color: #ffffff;
+
+  padding: 9px 16px;
+  border-radius: 30px;
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+}
+
+
+/* =========================
+   CARD TEXT
+========================= */
+
+.leader-content {
+  position: absolute;
+
+  left: 30px;
+  right: 30px;
+  bottom: 30px;
+
+  z-index: 2;
+}
+
+.leader-position {
+  display: block;
+
+  margin-bottom: 8px;
+
+  color: #ffc800;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.leader-content h3 {
+  margin: 0;
+
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 700;
+
+  color: #ffffff;
+}
+
+.leader-line {
+  width: 38px;
+  height: 3px;
+
+  margin-top: 15px;
+
+  border-radius: 20px;
+  background: #347ff4;
+}
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1000px) {
+
+  .leaders-section {
+    padding: 80px 5%;
+  }
+
+  .leaders-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .leader-card {
+    height: 480px;
+  }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 650px) {
+
+  .leaders-section {
+    padding: 70px 20px;
+  }
+
+  .leaders-heading {
+    margin-bottom: 35px;
+  }
+
+  .leaders-heading h2 {
+    font-size: 42px;
+  }
+
+  .leaders-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .leader-card {
+    height: 470px;
+    border-radius: 22px;
+  }
+
+  .leader-content {
+    left: 24px;
+    right: 24px;
+    bottom: 25px;
+  }
+
+  .leader-content h3 {
+    font-size: 22px;
+  }
+}
