@@ -10,14 +10,14 @@ const leaders = [
     id: 1,
     role: "AREA HEAD",
     title: "AREA HEAD",
-    name: "Apostle Lawrence Oduro",
+    name: "Apostle Lawrence Oduro-Nyarko",
     image: areaHead,
   },
   {
     id: 2,
     role: "PASTOR",
     title: "DISTRICT PASTOR",
-    name: "Pastor Georgr Arthur",
+    name: "Pastor George Arthur",
     image: pastor,
   },
   {

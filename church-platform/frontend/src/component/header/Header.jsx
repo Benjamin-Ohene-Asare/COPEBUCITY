@@ -1,18 +1,17 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import './Header.css'
-import logo  from "../../assets/logo.png";
 
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false)
+  const location = useLocation()
+
+  const isHome = location.pathname === '/'
 
   return (
-    <header>
+    <header className={isHome ? 'site-header home-header' : 'site-header inner-header'}>
       <div className="header">
-       <div className="logo">
-         <img src={logo} alt="" />
-        <h2>COP EBUCITY</h2>
-       </div>
+        <h2>Ebucity Church</h2>
 
         <button
           className="menu-btn"
