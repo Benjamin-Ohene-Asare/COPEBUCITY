@@ -10,17 +10,15 @@
 ===================================== */
 
 header {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
 
   width: 100%;
 
   z-index: 1000;
 
-  background: transparent;
+  background: #ffffff;
 
-  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid #edf0f5;
 }
 
 .header {

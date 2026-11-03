@@ -1,7 +1,24 @@
-import React from 'react'
-import './AboutHero.css'
+import React, { useEffect, useState } from "react";
+import "./AboutHero.css";
+
+import { getAbout } from "../../api/api";
 
 const AboutHero = () => {
+  const [about, setAbout] = useState(null);
+
+  useEffect(() => {
+    const loadAbout = async () => {
+      try {
+        const data = await getAbout();
+        setAbout(data);
+      } catch (error) {
+        console.error("Failed to load about hero:", error);
+      }
+    };
+
+    loadAbout();
+  }, []);
+
   return (
     <section className="about-hero">
       <div className="about-hero-content">
@@ -11,19 +28,17 @@ const AboutHero = () => {
         </span>
 
         <h1>
-          The Heart of
-          <span> Ebucity Church.</span>
+          {about?.title || "The Heart of Ebukrom District"}
         </h1>
 
         <p>
-          A Christ-centred family committed to worship,
-          spiritual growth, fellowship and impacting our
-          community with the love of Jesus Christ.
+          {about?.subtitle ||
+            "A Christ-centred family committed to worship, spiritual growth, fellowship and impacting our community with the love of Jesus Christ."}
         </p>
 
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default AboutHero
+export default AboutHero;

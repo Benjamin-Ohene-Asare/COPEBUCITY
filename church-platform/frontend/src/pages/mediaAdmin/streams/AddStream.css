@@ -1,0 +1,272 @@
+.add-stream-page {
+  width: 100%;
+}
+
+.add-stream-heading {
+  margin-bottom: 23px;
+}
+
+.add-stream-heading > a {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: #61799e;
+  font-size: 9px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.add-stream-heading > span {
+  display: block;
+  margin-bottom: 5px;
+  color: #4b7de3;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+}
+
+.add-stream-heading h2 {
+  margin: 0;
+  color: #172033;
+  font-size: 27px;
+}
+
+.add-stream-heading p {
+  margin: 6px 0 0;
+  color: #7b889b;
+  font-size: 10px;
+}
+
+.add-stream-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.7fr);
+  gap: 15px;
+}
+
+.add-stream-side {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.add-stream-card {
+  padding: 20px;
+  border: 1px solid #e0e6ef;
+  border-radius: 9px;
+  background: #fff;
+}
+
+.add-stream-card-title {
+  margin-bottom: 20px;
+}
+
+.add-stream-card-title span {
+  display: block;
+  margin-bottom: 4px;
+  color: #517fdc;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 1.3px;
+}
+
+.add-stream-card-title h3 {
+  margin: 0;
+  color: #202b3d;
+  font-size: 16px;
+}
+
+
+/* FIELDS */
+
+.stream-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.stream-form-field {
+  margin-bottom: 15px;
+}
+
+.stream-form-field label {
+  display: block;
+  margin-bottom: 6px;
+  color: #536177;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.stream-form-field input,
+.stream-form-field select,
+.stream-form-field textarea {
+  width: 100%;
+  border: 1px solid #dce3ed;
+  border-radius: 6px;
+  outline: none;
+  background: #fbfcfe;
+  color: #243047;
+  font-family: inherit;
+  font-size: 10px;
+}
+
+.stream-form-field input,
+.stream-form-field select {
+  height: 42px;
+  padding: 0 12px;
+}
+
+.stream-form-field textarea {
+  min-height: 180px;
+  padding: 12px;
+  resize: vertical;
+}
+
+.stream-form-field input:focus,
+.stream-form-field select:focus,
+.stream-form-field textarea:focus {
+  border-color: #5486ea;
+  background: #fff;
+}
+
+.stream-form-field small {
+  display: block;
+  margin-top: 5px;
+  color: #929dae;
+  font-size: 7px;
+}
+
+
+/* THUMBNAIL */
+
+.stream-thumbnail-upload {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px dashed #bdc9d9;
+  border-radius: 8px;
+  background: #f8fafc;
+  cursor: pointer;
+}
+
+.stream-thumbnail-upload img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.stream-thumbnail-upload div {
+  text-align: center;
+}
+
+.stream-thumbnail-upload strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #44556f;
+  font-size: 10px;
+}
+
+.stream-thumbnail-upload span {
+  color: #8a96a8;
+  font-size: 8px;
+}
+
+
+/* OPTIONS */
+
+.stream-options-card {
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+.stream-option {
+  min-height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.stream-option:last-child {
+  border-bottom: none;
+}
+
+.stream-option strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #344157;
+  font-size: 9px;
+}
+
+.stream-option span {
+  color: #8995a7;
+  font-size: 7px;
+}
+
+.stream-option input {
+  width: 16px;
+  height: 16px;
+}
+
+
+/* ACTIONS */
+
+.add-stream-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+}
+
+.add-stream-actions a,
+.add-stream-actions button {
+  min-height: 40px;
+  padding: 0 17px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 9px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.add-stream-actions a {
+  border: 1px solid #d9e0e9;
+  background: #fff;
+  color: #657388;
+}
+
+.add-stream-actions button {
+  border: none;
+  background: #2868e8;
+  color: #fff;
+  cursor: pointer;
+}
+
+.add-stream-actions button:disabled {
+  opacity: 0.6;
+}
+
+.add-stream-error {
+  margin-bottom: 15px;
+  padding: 11px 13px;
+  border: 1px solid #f0bcc4;
+  border-radius: 6px;
+  background: #fff1f3;
+  color: #b52b3c;
+  font-size: 9px;
+}
+
+@media (max-width: 900px) {
+  .add-stream-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .stream-form-row {
+    grid-template-columns: 1fr;
+  }
+}

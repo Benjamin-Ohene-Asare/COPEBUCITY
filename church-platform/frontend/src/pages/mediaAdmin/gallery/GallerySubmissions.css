@@ -1,0 +1,511 @@
+.gallery-submissions-page {
+  width: 100%;
+}
+
+
+/* HEADER */
+
+.gallery-submissions-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 25px;
+
+  margin-bottom: 24px;
+}
+
+
+.gallery-submissions-back {
+  display: inline-block;
+
+  margin-bottom: 17px;
+
+  color: #61799e;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  text-decoration: none;
+}
+
+
+.gallery-submissions-heading
+div > span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #4c7ee3;
+
+  font-size: 7px;
+  font-weight: 800;
+
+  letter-spacing: 1.6px;
+}
+
+
+.gallery-submissions-heading h2 {
+  margin: 0;
+
+  color: #172033;
+
+  font-size: 27px;
+}
+
+
+.gallery-submissions-heading p {
+  margin: 6px 0 0;
+
+  color: #7c899b;
+
+  font-size: 10px;
+}
+
+
+.gallery-submissions-heading p strong {
+  color: #4f5e75;
+}
+
+
+.gallery-submissions-upload {
+  min-height: 40px;
+
+  padding: 0 15px;
+
+  display: inline-flex;
+  align-items: center;
+
+  border-radius: 7px;
+
+  background: #2868e8;
+
+  color: #ffffff;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  text-decoration: none;
+}
+
+
+/* MESSAGE */
+
+.gallery-submission-message {
+  margin-bottom: 15px;
+
+  padding: 11px 13px;
+
+  border-radius: 7px;
+
+  font-size: 9px;
+}
+
+
+.gallery-submission-message.error {
+  border: 1px solid #f0bcc4;
+
+  background: #fff1f3;
+
+  color: #b52b3c;
+}
+
+
+.gallery-submission-message.success {
+  border: 1px solid #b8e2c8;
+
+  background: #edf9f1;
+
+  color: #27834f;
+}
+
+
+/* STATS */
+
+.gallery-submission-stats {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, 1fr);
+
+  gap: 10px;
+
+  margin-bottom: 16px;
+}
+
+
+.submission-stat {
+  min-height: 72px;
+
+  padding: 13px 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 1px solid #e0e6ef;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+
+.submission-stat:hover {
+  border-color: #b9cae8;
+}
+
+
+.submission-stat.active {
+  border-color: #5d8ce6;
+
+  background: #f4f7ff;
+}
+
+
+.submission-stat span {
+  color: #6f7d91;
+
+  font-size: 9px;
+  font-weight: 700;
+}
+
+
+.submission-stat strong {
+  color: #243149;
+
+  font-size: 22px;
+}
+
+
+/* CARD */
+
+.gallery-submission-card {
+  padding: 20px;
+
+  border: 1px solid #e0e6ef;
+
+  border-radius: 9px;
+
+  background: #ffffff;
+}
+
+
+.gallery-submission-card-heading {
+  margin-bottom: 17px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.gallery-submission-card-heading
+div > span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #517fdc;
+
+  font-size: 7px;
+  font-weight: 800;
+
+  letter-spacing: 1.3px;
+}
+
+
+.gallery-submission-card-heading h3 {
+  margin: 0;
+
+  color: #202b3d;
+
+  font-size: 16px;
+}
+
+
+.gallery-submission-card-heading
+> strong {
+  min-width: 29px;
+  height: 29px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 6px;
+
+  background: #edf3ff;
+
+  color: #326bdb;
+
+  font-size: 9px;
+}
+
+
+/* GRID */
+
+.gallery-submissions-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+
+/* ITEM */
+
+.gallery-submission-item {
+  overflow: hidden;
+
+  border: 1px solid #e1e7ef;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+}
+
+
+.gallery-submission-image {
+  position: relative;
+
+  height: 190px;
+
+  overflow: hidden;
+
+  background: #eef2f7;
+}
+
+
+.gallery-submission-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+/* STATUS */
+
+.submission-status {
+  position: absolute;
+
+  top: 9px;
+  right: 9px;
+
+  padding: 5px 8px;
+
+  border-radius: 20px;
+
+  font-size: 6px;
+  font-weight: 800;
+
+  text-transform: uppercase;
+}
+
+
+.submission-status.pending {
+  background: #fff4d8;
+
+  color: #a97712;
+}
+
+
+.submission-status.approved {
+  background: #e4f8eb;
+
+  color: #25864f;
+}
+
+
+.submission-status.rejected {
+  background: #ffe8eb;
+
+  color: #b63747;
+}
+
+
+/* INFO */
+
+.gallery-submission-info {
+  padding: 12px;
+}
+
+
+.submission-person span {
+  display: block;
+
+  margin-bottom: 3px;
+
+  color: #939eae;
+
+  font-size: 6px;
+
+  text-transform: uppercase;
+}
+
+
+.submission-person strong {
+  color: #354258;
+
+  font-size: 9px;
+}
+
+
+.gallery-submission-info > p {
+  margin: 10px 0;
+
+  color: #69778b;
+
+  font-size: 8px;
+
+  line-height: 1.5;
+}
+
+
+.submission-date {
+  display: block;
+
+  margin-top: 8px;
+
+  color: #9ba5b4;
+
+  font-size: 6px;
+}
+
+
+/* ACTIONS */
+
+.submission-actions {
+  margin-top: 12px;
+
+  padding-top: 11px;
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 6px;
+
+  border-top: 1px solid #edf0f5;
+}
+
+
+.submission-actions button {
+  min-height: 31px;
+
+  border: none;
+
+  border-radius: 5px;
+
+  font-family: inherit;
+
+  font-size: 7px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+
+.submission-approve {
+  background: #e8f8ef;
+
+  color: #278653;
+}
+
+
+.submission-reject {
+  background: #fff0f2;
+
+  color: #bd3546;
+}
+
+
+.submission-actions button:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+
+/* EMPTY */
+
+.gallery-submission-empty,
+.gallery-submissions-loading {
+  min-height: 270px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+}
+
+
+.gallery-submission-empty h3 {
+  margin: 0 0 6px;
+
+  color: #344157;
+
+  font-size: 15px;
+}
+
+
+.gallery-submission-empty p,
+.gallery-submissions-loading {
+  color: #8290a3;
+
+  font-size: 9px;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+
+  .gallery-submissions-grid {
+    grid-template-columns:
+      repeat(3, 1fr);
+  }
+
+}
+
+
+@media (max-width: 850px) {
+
+  .gallery-submission-stats {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+  .gallery-submissions-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .gallery-submissions-heading {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+
+  .gallery-submission-stats,
+  .gallery-submissions-grid {
+    grid-template-columns: 1fr;
+  }
+
+}

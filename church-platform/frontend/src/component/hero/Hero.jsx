@@ -1,47 +1,42 @@
 import React, { useEffect, useState } from "react";
 import "./Hero.css";
 
-import image1 from "../../assets/image1.jpeg";
-import image2 from "../../assets/image2.jpeg";
-import image3 from "../../assets/image3.jpeg";
-
-const slides = [
-  {
-    image: image1,
-    smallTitle: "The Church of Pentecost • Elmina Area",
-    title: "EBUKROM DISTRICT",
-    button: "DISCOVER OUR DISTRICT",
-  },
-  {
-    image: image2,
-    smallTitle: "A Place of Worship, Fellowship and Growth",
-    title: "GROWING TOGETHER IN CHRIST",
-    button: "EXPLORE MORE",
-  },
-  {
-    image: image3,
-    smallTitle: "You Are Welcome To Worship With Us",
-    title: "EXPERIENCE HIS PRESENCE",
-    button: "JOIN US",
-  },
-];
+import {
+  getHeroSlides,
+  getSiteSettings,
+} from "../../api/api";
 
 const Hero = () => {
+  const [slides, setSlides] = useState([]);
+  const [siteSettings, setSiteSettings] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [loading, setLoading] = useState(true);
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) =>
-      prev === slides.length - 1 ? 0 : prev + 1
-    );
-  };
-
-  const previousSlide = () => {
-    setCurrentSlide((prev) =>
-      prev === 0 ? slides.length - 1 : prev - 1
-    );
-  };
-
+  // FETCH HERO DATA
   useEffect(() => {
+    const loadHero = async () => {
+      try {
+        const [slidesData, settingsData] = await Promise.all([
+          getHeroSlides(),
+          getSiteSettings(),
+        ]);
+
+        setSlides(slidesData);
+        setSiteSettings(settingsData);
+      } catch (error) {
+        console.error("Failed to load hero:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadHero();
+  }, []);
+
+  // AUTO SLIDER
+  useEffect(() => {
+    if (slides.length <= 1) return;
+
     const interval = setInterval(() => {
       setCurrentSlide((prev) =>
         prev === slides.length - 1 ? 0 : prev + 1
@@ -49,7 +44,41 @@ const Hero = () => {
     }, 6000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [slides.length]);
+
+  const nextSlide = () => {
+    if (slides.length === 0) return;
+
+    setCurrentSlide((prev) =>
+      prev === slides.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const previousSlide = () => {
+    if (slides.length === 0) return;
+
+    setCurrentSlide((prev) =>
+      prev === 0 ? slides.length - 1 : prev - 1
+    );
+  };
+
+  // LOADING
+  if (loading) {
+    return (
+      <section className="hero hero-loading">
+        <p>Loading...</p>
+      </section>
+    );
+  }
+
+  // NO SLIDES
+  if (slides.length === 0) {
+    return (
+      <section className="hero hero-loading">
+        <p>No hero slides available.</p>
+      </section>
+    );
+  }
 
   const slide = slides[currentSlide];
 
@@ -65,89 +94,107 @@ const Hero = () => {
 
       {/* HERO CONTENT */}
       <div className="hero-content">
+
         <p className="hero-small-title">
-          {slide.smallTitle}
+          {slide.small_title}
         </p>
 
         <div className="hero-line"></div>
 
-        <h1>{slide.title}</h1>
+        <h1>
+          {slide.title}
+        </h1>
 
-        <button className="hero-btn">
-          {slide.button}
-        </button>
+        {slide.button_text && (
+          <button
+            className="hero-btn"
+            onClick={() => {
+              if (slide.button_url) {
+                window.location.href = slide.button_url;
+              }
+            }}
+          >
+            {slide.button_text}
+          </button>
+        )}
+
       </div>
 
       {/* SLIDER CONTROLS */}
-      <div className="slider-controls">
+      {slides.length > 1 && (
+        <div className="slider-controls">
 
-        <button
-          className="slider-arrow"
-          onClick={previousSlide}
-          aria-label="Previous slide"
-        >
-          ‹
-        </button>
+          <button
+            className="slider-arrow"
+            onClick={previousSlide}
+            aria-label="Previous slide"
+          >
+            ‹
+          </button>
 
-        <div className="slider-dots">
-          {slides.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={
-                currentSlide === index
-                  ? "slider-dot active"
-                  : "slider-dot"
-              }
-              aria-label={`Go to slide ${index + 1}`}
-            />
-          ))}
+          <div className="slider-dots">
+
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={
+                  currentSlide === index
+                    ? "slider-dot active"
+                    : "slider-dot"
+                }
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+
+          </div>
+
+          <button
+            className="slider-arrow"
+            onClick={nextSlide}
+            aria-label="Next slide"
+          >
+            ›
+          </button>
+
         </div>
-
-        <button
-          className="slider-arrow"
-          onClick={nextSlide}
-          aria-label="Next slide"
-        >
-          ›
-        </button>
-
-      </div>
+      )}
 
       {/* BOTTOM INFORMATION */}
-      <div className="hero-info">
+      {siteSettings && (
+        <div className="hero-info">
 
-        <div className="info-item">
-          <span className="info-icon">◎</span>
+          <div className="info-item">
+            <span className="info-icon">◎</span>
 
-          <div>
             <span>
-              The Church of Pentecost
+              {siteSettings.church_name}
             </span>
           </div>
+
+          <div className="info-divider"></div>
+
+          <div className="info-item">
+            <span className="info-icon">☎</span>
+
+            <span>
+              {siteSettings.phone}
+            </span>
+          </div>
+
+          <div className="info-divider"></div>
+
+          <div className="info-item">
+            <span className="info-icon">⌖</span>
+
+            <span>
+              {siteSettings.location}
+            </span>
+          </div>
+
         </div>
+      )}
 
-        <div className="info-divider"></div>
-
-        <div className="info-item">
-          <span className="info-icon">☎</span>
-
-          <span>
-            +233 54 125  4645
-          </span>
-        </div>
-
-        <div className="info-divider"></div>
-
-        <div className="info-item">
-          <span className="info-icon">⌖</span>
-
-          <span>
-            Ebukrom, Elmina, Ghana
-          </span>
-        </div>
-
-      </div>
     </section>
   );
 };

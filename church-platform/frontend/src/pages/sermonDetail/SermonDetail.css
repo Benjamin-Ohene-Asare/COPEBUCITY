@@ -1,0 +1,646 @@
+/* ================================
+   PAGE
+================================ */
+
+* {
+  box-sizing: border-box;
+}
+
+.sermon-detail-page {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ================================
+   DARK HERO
+================================ */
+
+.sermon-detail-top {
+  position: relative;
+
+  width: 100%;
+  min-height: 100vh;
+
+  background: #0d090d;
+  color: #fff;
+
+  padding: 35px 5% 70px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+
+/* ================================
+   TOP BAR
+================================ */
+
+.sermon-detail-topbar {
+  position: relative;
+
+  width: 100%;
+  max-width: 1600px;
+
+  margin: 0 auto 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  z-index: 20;
+}
+
+
+/* BACK BUTTON */
+
+.back-to-sermons {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 12px;
+
+  padding: 15px 24px;
+
+  border-radius: 50px;
+
+  background: #292428;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  color: #fff;
+
+  text-decoration: none;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 0.7px;
+
+  transition: 0.3s ease;
+}
+
+.back-to-sermons:hover {
+  background: #266bed;
+}
+
+.back-to-sermons span {
+  font-size: 20px;
+  line-height: 1;
+}
+
+
+/* SHARE */
+
+.share-sermon {
+  width: 54px;
+  height: 54px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  background: #292428;
+
+  color: #fff;
+
+  font-size: 18px;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+.share-sermon:hover {
+  background: #266bed;
+}
+
+
+/* ================================
+   MAIN HERO CONTENT
+================================ */
+
+.sermon-detail-container {
+  width: 100%;
+  max-width: 1600px;
+
+  margin: auto;
+
+  flex: 1;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(380px, 0.85fr)
+    minmax(500px, 1.15fr);
+
+  align-items: center;
+
+  gap: clamp(60px, 7vw, 120px);
+}
+
+
+/* ================================
+   IMAGE
+================================ */
+
+.sermon-detail-image {
+  width: 100%;
+  max-width: 540px;
+
+  margin: 0 auto;
+}
+
+.sermon-detail-image img {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  aspect-ratio: 1 / 1;
+
+  object-fit: cover;
+
+  border-radius: 32px;
+
+  border: 7px solid rgba(255, 255, 255, 0.65);
+}
+
+
+/* ================================
+   RIGHT CONTENT
+================================ */
+
+.sermon-detail-info {
+  width: 100%;
+  max-width: 850px;
+}
+
+
+/* NOW PLAYING */
+
+.now-playing {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 11px 24px;
+
+  margin-bottom: 28px;
+
+  border-radius: 50px;
+
+  background: #266bed;
+
+  color: #fff;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+
+/* TITLE */
+
+.sermon-detail-info h1 {
+  margin: 0 0 30px;
+
+  max-width: 850px;
+
+  color: #fff;
+
+  font-size: clamp(52px, 5vw, 82px);
+
+  line-height: 0.98;
+
+  letter-spacing: -3px;
+
+  font-weight: 800;
+}
+
+
+/* ================================
+   META
+================================ */
+
+.sermon-detail-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 35px;
+
+  margin-bottom: 45px;
+
+  color: #c8bec4;
+
+  font-size: 12px;
+
+  font-weight: 800;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+}
+
+
+/* ================================
+   AUDIO CARD
+================================ */
+
+.sermon-audio {
+  width: 100%;
+
+  padding: 30px;
+
+  border-radius: 32px;
+
+  background: #211c20;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.3);
+}
+
+
+.sermon-audio-heading {
+  display: flex;
+  align-items: center;
+
+  gap: 20px;
+
+  margin-bottom: 25px;
+}
+
+
+.audio-main-play {
+  width: 58px;
+  height: 58px;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #266bed;
+
+  color: #fff;
+
+  font-size: 18px;
+}
+
+
+.sermon-audio-heading h3 {
+  margin: 0 0 6px;
+
+  color: #fff;
+
+  font-size: 19px;
+}
+
+
+.sermon-audio-heading p {
+  margin: 0;
+
+  color: #918991;
+
+  font-size: 14px;
+}
+
+
+.sermon-audio audio {
+  display: block;
+
+  width: 100%;
+}
+
+
+/* ================================
+   MESSAGE INSIGHTS
+================================ */
+
+.message-insights {
+  width: 100%;
+
+  padding: 100px 7% 120px;
+
+  background: #fff;
+}
+
+
+.message-insights-container {
+  width: 100%;
+  max-width: 1050px;
+
+  margin: 0 auto;
+}
+
+
+/* HEADING */
+
+.insights-heading {
+  display: flex;
+  align-items: center;
+
+  gap: 18px;
+
+  margin-bottom: 55px;
+}
+
+
+.insights-heading > span {
+  width: 7px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  border-radius: 20px;
+
+  background: #266bed;
+}
+
+
+.insights-heading h2 {
+  margin: 0;
+
+  color: #10245d;
+
+  font-size: clamp(36px, 4vw, 52px);
+
+  line-height: 1;
+
+  letter-spacing: -2px;
+}
+
+
+/* ================================
+   INSIGHT CONTENT
+================================ */
+
+.insights-content h3 {
+  margin: 0 0 28px;
+
+  color: #10245d;
+
+  font-size: 21px;
+
+  text-transform: uppercase;
+}
+
+
+.insights-subtitle {
+  margin: 0 0 65px;
+
+  color: #10245d;
+
+  font-size: 19px;
+
+  font-weight: 700;
+
+  font-style: italic;
+}
+
+
+/* SERMON INFO */
+
+.sermon-information {
+  display: flex;
+  flex-direction: column;
+
+  gap: 28px;
+
+  margin-bottom: 65px;
+}
+
+
+.sermon-information p {
+  margin: 0;
+
+  color: #5b687e;
+
+  font-size: 17px;
+
+  line-height: 1.6;
+}
+
+
+.sermon-information strong {
+  color: #34415a;
+
+  margin-right: 8px;
+}
+
+
+/* ================================
+   EXPOSITION
+================================ */
+
+.sermon-exposition h4 {
+  margin: 0 0 28px;
+
+  color: #526078;
+
+  font-size: 18px;
+
+  font-weight: 500;
+}
+
+
+.sermon-exposition ul {
+  margin: 0;
+
+  padding-left: 25px;
+}
+
+
+.sermon-exposition li {
+  margin-bottom: 20px;
+
+  padding-left: 5px;
+
+  color: #5b687e;
+
+  font-size: 17px;
+
+  line-height: 1.8;
+}
+
+
+.sermon-exposition li::marker {
+  color: #ffd447;
+}
+
+
+/* ================================
+   LAPTOP
+================================ */
+
+@media (max-width: 1200px) {
+
+  .sermon-detail-container {
+    grid-template-columns:
+      minmax(320px, 0.9fr)
+      minmax(400px, 1.1fr);
+
+    gap: 55px;
+  }
+
+  .sermon-detail-image {
+    max-width: 470px;
+  }
+
+  .sermon-detail-info h1 {
+    font-size: clamp(48px, 5vw, 65px);
+  }
+}
+
+
+/* ================================
+   TABLET / MOBILE
+================================ */
+
+@media (max-width: 850px) {
+
+  .sermon-detail-top {
+    min-height: auto;
+
+    padding: 25px 6% 70px;
+  }
+
+  .sermon-detail-topbar {
+    margin-bottom: 50px;
+  }
+
+  .sermon-detail-container {
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+  }
+
+  .sermon-detail-image {
+    max-width: 500px;
+  }
+
+  .sermon-detail-info {
+    max-width: 100%;
+  }
+
+  .sermon-detail-info h1 {
+    font-size: 50px;
+  }
+
+  .sermon-audio {
+    max-width: 100%;
+  }
+
+  .message-insights {
+    padding: 75px 6% 90px;
+  }
+}
+
+
+/* ================================
+   SMALL MOBILE
+================================ */
+
+@media (max-width: 500px) {
+
+  .sermon-detail-top {
+    padding: 20px 5% 60px;
+  }
+
+  .sermon-detail-topbar {
+    margin-bottom: 40px;
+  }
+
+  .back-to-sermons {
+    padding: 11px 15px;
+
+    font-size: 9px;
+  }
+
+  .back-to-sermons span {
+    font-size: 16px;
+  }
+
+  .share-sermon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .sermon-detail-container {
+    gap: 38px;
+  }
+
+  .sermon-detail-image img {
+    border-width: 5px;
+
+    border-radius: 24px;
+  }
+
+  .now-playing {
+    padding: 9px 17px;
+
+    font-size: 9px;
+  }
+
+  .sermon-detail-info h1 {
+    font-size: 38px;
+
+    letter-spacing: -1.5px;
+  }
+
+  .sermon-detail-meta {
+    gap: 15px;
+
+    font-size: 10px;
+
+    margin-bottom: 30px;
+  }
+
+  .sermon-audio {
+    padding: 20px;
+
+    border-radius: 23px;
+  }
+
+  .audio-main-play {
+    width: 48px;
+    height: 48px;
+  }
+
+  .sermon-audio-heading h3 {
+    font-size: 16px;
+  }
+
+  .sermon-audio-heading p {
+    font-size: 12px;
+  }
+
+  .insights-heading h2 {
+    font-size: 32px;
+  }
+
+  .insights-heading > span {
+    height: 38px;
+  }
+
+  .sermon-information p,
+  .sermon-exposition li {
+    font-size: 15px;
+  }
+}

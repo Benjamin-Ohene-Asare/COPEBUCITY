@@ -1,0 +1,547 @@
+.photo-tag-admin-page {
+  width: 100%;
+}
+
+
+/* HEADER */
+
+.photo-tag-admin-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 25px;
+
+  margin-bottom: 22px;
+}
+
+
+.photo-tag-admin-heading
+> div:first-child > span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #4c7ee3;
+
+  font-size: 7px;
+  font-weight: 800;
+
+  letter-spacing: 1.6px;
+}
+
+
+.photo-tag-admin-heading h2 {
+  margin: 0;
+
+  color: #172033;
+
+  font-size: 27px;
+}
+
+
+.photo-tag-admin-heading p {
+  margin: 6px 0 0;
+
+  color: #7c899b;
+
+  font-size: 10px;
+}
+
+
+.photo-tag-admin-header-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+
+.photo-tag-open-tool,
+.photo-tag-add-btn {
+  min-height: 40px;
+
+  padding: 0 15px;
+
+  display: inline-flex;
+  align-items: center;
+
+  border-radius: 7px;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  text-decoration: none;
+}
+
+
+.photo-tag-open-tool {
+  border: 1px solid #d9e1ec;
+
+  background: #ffffff;
+
+  color: #516783;
+}
+
+
+.photo-tag-add-btn {
+  background: #2868e8;
+
+  color: #ffffff;
+}
+
+
+/* STATS */
+
+.photo-tag-admin-stats {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 10px;
+
+  margin-bottom: 15px;
+}
+
+
+.photo-tag-admin-stats > div {
+  min-height: 78px;
+
+  padding: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  border: 1px solid #e0e6ef;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+}
+
+
+.photo-tag-admin-stats span {
+  color: #758296;
+
+  font-size: 8px;
+  font-weight: 700;
+}
+
+
+.photo-tag-admin-stats strong {
+  color: #253249;
+
+  font-size: 22px;
+}
+
+
+.photo-tag-admin-stats
+.photo-default-name {
+  max-width: 160px;
+
+  font-size: 11px;
+
+  text-align: right;
+}
+
+
+/* TOOLBAR */
+
+.photo-tag-admin-toolbar {
+  margin-bottom: 16px;
+
+  padding: 13px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+
+  border: 1px solid #e0e6ef;
+
+  border-radius: 8px;
+
+  background: #ffffff;
+}
+
+
+.photo-tag-admin-toolbar input {
+  width: 100%;
+
+  max-width: 420px;
+
+  height: 38px;
+
+  padding: 0 12px;
+
+  border: 1px solid #dce3ed;
+
+  border-radius: 6px;
+
+  outline: none;
+
+  background: #f9fafc;
+
+  font-size: 10px;
+}
+
+
+.photo-tag-admin-toolbar
+input:focus {
+  border-color: #4f83e8;
+}
+
+
+.photo-tag-admin-toolbar > span {
+  color: #8a96a8;
+
+  font-size: 8px;
+}
+
+
+/* ERROR */
+
+.photo-tag-admin-error {
+  margin-bottom: 15px;
+
+  padding: 11px 13px;
+
+  border-radius: 6px;
+
+  background: #fff1f3;
+
+  color: #b52b3c;
+
+  font-size: 9px;
+}
+
+
+/* GRID */
+
+.photo-tag-admin-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+  gap: 14px;
+}
+
+
+/* CARD */
+
+.photo-tag-admin-card {
+  overflow: hidden;
+
+  border: 1px solid #e0e6ef;
+
+  border-radius: 9px;
+
+  background: #ffffff;
+}
+
+
+.photo-tag-preview {
+  height: 210px;
+
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #162032,
+      #0a101a
+    );
+}
+
+
+.photo-tag-preview-bg {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  padding: 10px;
+}
+
+
+.photo-tag-preview img {
+  width: 100%;
+
+  max-height: 100%;
+
+  object-fit: contain;
+}
+
+
+.photo-tag-no-image {
+  align-self: center;
+
+  color: #708099;
+
+  font-size: 9px;
+}
+
+
+.photo-tag-badges {
+  position: absolute;
+
+  top: 10px;
+  left: 10px;
+  right: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 8px;
+}
+
+
+.photo-tag-default-badge,
+.photo-tag-status {
+  padding: 5px 8px;
+
+  border-radius: 20px;
+
+  font-size: 6px;
+  font-weight: 800;
+}
+
+
+.photo-tag-default-badge {
+  background: #eaf1ff;
+
+  color: #3970da;
+}
+
+
+.photo-tag-status.active {
+  background: #e7f8ed;
+
+  color: #298b54;
+}
+
+
+.photo-tag-status.inactive {
+  background: #edf0f4;
+
+  color: #758194;
+}
+
+
+/* BODY */
+
+.photo-tag-admin-body {
+  padding: 15px;
+}
+
+
+.photo-tag-admin-body h3 {
+  margin: 0 0 7px;
+
+  color: #202b3d;
+
+  font-size: 14px;
+}
+
+
+.photo-tag-admin-body > p {
+  min-height: 37px;
+
+  margin: 0 0 14px;
+
+  color: #7d899b;
+
+  font-size: 8px;
+
+  line-height: 1.5;
+}
+
+
+.photo-tag-meta {
+  min-height: 31px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  border-top: 1px solid #edf0f5;
+}
+
+
+.photo-tag-meta span {
+  color: #8995a7;
+
+  font-size: 7px;
+}
+
+
+.photo-tag-meta strong {
+  color: #44536a;
+
+  font-size: 8px;
+}
+
+
+/* ACTIONS */
+
+.photo-tag-admin-actions {
+  margin-top: 11px;
+
+  padding-top: 12px;
+
+  display: flex;
+
+  gap: 5px;
+
+  border-top: 1px solid #edf0f5;
+}
+
+
+.photo-tag-action {
+  min-height: 28px;
+
+  padding: 0 8px;
+
+  display: inline-flex;
+  align-items: center;
+
+  border: none;
+
+  border-radius: 4px;
+
+  font-family: inherit;
+
+  font-size: 7px;
+  font-weight: 700;
+
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
+
+.photo-tag-action.use {
+  background: #edf3ff;
+
+  color: #3b70db;
+}
+
+
+.photo-tag-action.edit {
+  background: #eef8f1;
+
+  color: #318457;
+}
+
+
+.photo-tag-action.delete {
+  background: #fff0f2;
+
+  color: #bf3445;
+}
+
+
+/* EMPTY */
+
+.photo-tag-admin-loading,
+.photo-tag-admin-empty {
+  min-height: 300px;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #e0e6ef;
+
+  border-radius: 9px;
+
+  background: #ffffff;
+
+  color: #8390a1;
+
+  font-size: 9px;
+
+  text-align: center;
+}
+
+
+.photo-tag-admin-empty h3 {
+  margin: 0 0 6px;
+
+  color: #253147;
+
+  font-size: 16px;
+}
+
+
+.photo-tag-admin-empty p {
+  margin: 0 0 14px;
+}
+
+
+.photo-tag-admin-empty a {
+  padding: 9px 14px;
+
+  border-radius: 6px;
+
+  background: #2868e8;
+
+  color: #ffffff;
+
+  text-decoration: none;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1050px) {
+
+  .photo-tag-admin-grid {
+    grid-template-columns:
+      repeat(2, 1fr);
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .photo-tag-admin-heading,
+  .photo-tag-admin-toolbar {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+
+  .photo-tag-admin-header-actions {
+    width: 100%;
+
+    flex-wrap: wrap;
+  }
+
+
+  .photo-tag-admin-stats,
+  .photo-tag-admin-grid {
+    grid-template-columns: 1fr;
+  }
+
+}

@@ -1,0 +1,625 @@
+.photo-tag-page {
+  width: 100%;
+  overflow-x: hidden;
+
+  background: #f6f8fc;
+}
+
+
+/* =========================================
+   HERO
+========================================= */
+
+.photo-tag-hero {
+  width: 100%;
+
+  padding: 75px 7% 115px;
+
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(44, 108, 240, 0.22),
+      transparent 36%
+    ),
+    linear-gradient(
+      135deg,
+      #0d245c,
+      #173f90
+    );
+
+  color: #ffffff;
+}
+
+
+.photo-tag-hero-content {
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+}
+
+
+.photo-tag-hero-content > span {
+  display: block;
+
+  margin-bottom: 14px;
+
+  color: #ffd447;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 2.5px;
+}
+
+
+.photo-tag-hero h1 {
+  margin: 0 0 18px;
+
+  color: #ffffff;
+
+  font-size: clamp(45px, 5vw, 70px);
+
+  line-height: 1;
+
+  letter-spacing: -2px;
+}
+
+
+.photo-tag-hero h1 strong {
+  color: #ffd447;
+}
+
+
+.photo-tag-hero p {
+  max-width: 650px;
+
+  margin: 0;
+
+  color: rgba(255,255,255,0.76);
+
+  font-size: 16px;
+
+  line-height: 1.7;
+}
+
+
+/* =========================================
+   TOOL
+========================================= */
+
+.photo-tag-section {
+  width: 100%;
+
+  padding: 0 6% 110px;
+}
+
+
+.photo-tag-container {
+  width: 100%;
+  max-width: 1250px;
+
+  margin: -55px auto 0;
+
+  position: relative;
+  z-index: 4;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(320px, 0.7fr)
+    minmax(0, 1.3fr);
+
+  gap: 28px;
+}
+
+
+/* =========================================
+   CONTROLS
+========================================= */
+
+.photo-tag-controls {
+  padding: 35px;
+
+  border-radius: 24px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 20px 55px rgba(16, 36, 93, 0.1);
+}
+
+
+.photo-tag-heading {
+  margin-bottom: 30px;
+}
+
+
+.photo-tag-heading span {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #1768f2;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+
+.photo-tag-heading h2 {
+  margin: 0;
+
+  color: #10245d;
+
+  font-size: 31px;
+}
+
+
+/* FIELD */
+
+.photo-tag-field {
+  margin-bottom: 24px;
+}
+
+
+.photo-tag-field label {
+  display: block;
+
+  margin-bottom: 9px;
+
+  color: #26385d;
+
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+.photo-tag-field select,
+.photo-tag-field input[type="file"] {
+  width: 100%;
+
+  min-height: 50px;
+
+  padding: 12px 14px;
+
+  border: 1px solid #dfe5ee;
+
+  border-radius: 12px;
+
+  outline: none;
+
+  background: #fafbfd;
+
+  color: #10245d;
+}
+
+
+.photo-tag-field select:focus {
+  border-color: #1768f2;
+
+  background: #ffffff;
+}
+
+
+/* SELECTED TAG */
+
+.selected-tag-preview {
+  margin-bottom: 24px;
+
+  padding: 16px;
+
+  border-radius: 13px;
+
+  background: #101e43;
+}
+
+
+.selected-tag-preview > span {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: rgba(255,255,255,0.7);
+
+  font-size: 9px;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1px;
+}
+
+
+.selected-tag-preview img {
+  display: block;
+
+  max-width: 100%;
+  max-height: 100px;
+
+  margin: 0 auto;
+
+  object-fit: contain;
+}
+
+
+/* =========================================
+   POSITION BUTTONS
+========================================= */
+
+.photo-position-options {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 8px;
+}
+
+
+.photo-position-options button {
+  min-height: 47px;
+
+  padding: 9px;
+
+  border: 1px solid #dce3ed;
+
+  border-radius: 10px;
+
+  background: #f8faff;
+
+  color: #60708a;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+
+.photo-position-options button:hover {
+  border-color: #1768f2;
+
+  color: #1768f2;
+}
+
+
+.photo-position-options button.active {
+  border-color: #1768f2;
+
+  background: #1768f2;
+
+  color: #ffffff;
+}
+
+
+/* =========================================
+   ERROR
+========================================= */
+
+.photo-tag-error {
+  margin-bottom: 18px;
+
+  padding: 13px 15px;
+
+  border-radius: 10px;
+
+  background: #fff1f1;
+
+  color: #b42323;
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+.photo-tag-generate,
+.photo-tag-download {
+  width: 100%;
+
+  min-height: 53px;
+
+  border: none;
+
+  border-radius: 30px;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+
+.photo-tag-generate {
+  background: #1768f2;
+
+  color: #ffffff;
+}
+
+
+.photo-tag-generate:hover {
+  background: #10245d;
+}
+
+
+.photo-tag-generate:disabled {
+  background: #cad4e2;
+
+  cursor: not-allowed;
+}
+
+
+.photo-tag-download {
+  margin-top: 12px;
+
+  background: #ffd447;
+
+  color: #10245d;
+}
+
+
+.photo-tag-download:hover {
+  background: #10245d;
+
+  color: #ffffff;
+}
+
+
+/* =========================================
+   PREVIEW PANEL
+========================================= */
+
+.photo-tag-preview-panel {
+  padding: 28px;
+
+  border-radius: 24px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 20px 55px rgba(16, 36, 93, 0.1);
+}
+
+
+.photo-tag-preview-heading {
+  margin-bottom: 18px;
+}
+
+
+.photo-tag-preview-heading span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #1768f2;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+
+.photo-tag-preview-heading h3 {
+  margin: 0;
+
+  color: #10245d;
+
+  font-size: 23px;
+}
+
+
+/* PREVIEW */
+
+.photo-tag-preview {
+  width: 100%;
+
+  min-height: 450px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-radius: 16px;
+
+  background: #e8edf5;
+}
+
+
+.photo-tag-preview > img {
+  display: block;
+
+  max-width: 100%;
+  max-height: 650px;
+
+  object-fit: contain;
+}
+
+
+/* LIVE FRONTEND PREVIEW */
+
+.photo-tag-live-preview {
+  position: relative;
+
+  width: fit-content;
+  max-width: 100%;
+
+  line-height: 0;
+}
+
+
+.photo-tag-base-image {
+  display: block;
+
+  max-width: 100%;
+  max-height: 650px;
+
+  object-fit: contain;
+}
+
+
+.photo-tag-overlay-preview {
+  position: absolute;
+
+  bottom: 10px;
+
+  width: 40%;
+  height: auto;
+
+  object-fit: contain;
+}
+
+
+.photo-tag-overlay-preview.bottom-left {
+  left: 10px;
+}
+
+
+.photo-tag-overlay-preview.bottom-center {
+  left: 50%;
+
+  transform: translateX(-50%);
+}
+
+
+.photo-tag-overlay-preview.bottom-right {
+  right: 10px;
+}
+
+
+/* EMPTY */
+
+.photo-tag-empty {
+  padding: 50px;
+
+  text-align: center;
+
+  color: #8390a5;
+}
+
+
+.photo-tag-empty > span {
+  width: 60px;
+  height: 60px;
+
+  margin: 0 auto 15px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #ffffff;
+
+  color: #1768f2;
+
+  font-size: 28px;
+}
+
+
+.photo-tag-empty h3 {
+  margin: 0 0 7px;
+
+  color: #40506b;
+
+  font-size: 19px;
+}
+
+
+.photo-tag-empty p {
+  margin: 0;
+
+  font-size: 12px;
+}
+
+
+/* NOTE */
+
+.photo-tag-note {
+  margin-top: 18px;
+
+  padding: 14px;
+
+  border-radius: 11px;
+
+  background: #f4f7fc;
+}
+
+
+.photo-tag-note p {
+  margin: 0;
+
+  color: #7a879b;
+
+  font-size: 11px;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .photo-tag-container {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 550px) {
+
+  .photo-tag-hero {
+    padding: 55px 5% 95px;
+  }
+
+
+  .photo-tag-section {
+    padding-left: 5%;
+    padding-right: 5%;
+  }
+
+
+  .photo-tag-container {
+    margin-top: -40px;
+  }
+
+
+  .photo-tag-controls,
+  .photo-tag-preview-panel {
+    padding: 22px;
+
+    border-radius: 19px;
+  }
+
+
+  .photo-position-options {
+    grid-template-columns: 1fr;
+  }
+
+
+  .photo-tag-preview {
+    min-height: 300px;
+  }
+
+}

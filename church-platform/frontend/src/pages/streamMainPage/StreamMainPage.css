@@ -1,0 +1,198 @@
+.stream-main-page {
+  width: 100%;
+}
+
+
+/* DARK PLAYER AREA */
+
+.stream-player-section {
+  width: 100%;
+
+  min-height: 100vh;
+
+  padding: 45px 7% 100px;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(33, 103, 255, 0.13),
+      transparent 35%
+    ),
+    #090d18;
+
+  color: #ffffff;
+}
+
+
+.stream-player-container {
+  width: 100%;
+  max-width: 1350px;
+
+  margin: 0 auto;
+}
+
+
+/* BACK */
+
+.stream-back {
+  display: inline-flex;
+
+  margin-bottom: 45px;
+
+  padding: 13px 21px;
+
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 30px;
+
+  background: rgba(255,255,255,0.06);
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+
+/* HEADER */
+
+.stream-main-header {
+  margin-bottom: 35px;
+}
+
+
+.main-stream-status {
+  display: inline-block;
+
+  margin-bottom: 15px;
+
+  padding: 7px 14px;
+
+  border-radius: 30px;
+
+  background: #1768f2;
+
+  color: #ffffff;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+.main-stream-status.live {
+  background: #e62929;
+}
+
+
+.stream-main-header h1 {
+  max-width: 900px;
+
+  margin-bottom: 10px;
+
+  font-size: clamp(42px, 5vw, 70px);
+
+  line-height: 1;
+
+  letter-spacing: -2px;
+}
+
+
+.stream-main-header p {
+  color: #aab5c9;
+}
+
+
+/* VIDEO */
+
+.main-video-wrapper {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 16 / 9;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+
+  background: #000000;
+
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+
+.main-video-wrapper iframe {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  border: none;
+}
+
+
+/* DESCRIPTION */
+
+.stream-description {
+  max-width: 850px;
+
+  padding-top: 55px;
+}
+
+
+.stream-description > span {
+  display: block;
+
+  margin-bottom: 13px;
+
+  color: #ffd447;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+
+.stream-description h2 {
+  margin-bottom: 17px;
+
+  font-size: 32px;
+}
+
+
+.stream-description p {
+  color: #aeb8c9;
+
+  font-size: 16px;
+
+  line-height: 1.8;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 768px) {
+
+  .stream-player-section {
+    padding: 30px 5% 75px;
+  }
+
+  .stream-back {
+    margin-bottom: 35px;
+  }
+
+  .stream-main-header h1 {
+    font-size: 42px;
+  }
+
+  .main-video-wrapper {
+    border-radius: 12px;
+  }
+
+}

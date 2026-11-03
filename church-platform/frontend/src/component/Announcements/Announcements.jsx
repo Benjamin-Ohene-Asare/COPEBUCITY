@@ -1,42 +1,53 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./Announcements.css";
 
-import announcement1 from "../../assets/logo.png";
-
-const announcements = [
-  {
-    id: 1,
-    image: announcement1,
-    category: "ANNOUNCEMENT",
-    date: "AUG 30, 2026",
-    title: "Sunday Worship Service",
-    description:
-      "Join us this Sunday for a wonderful time of worship, fellowship and the Word of God.",
-    isNew: true,
-  },
-  {
-    id: 2,
-    image: announcement1,
-    category: "ANNOUNCEMENT",
-    date: "AUG 28, 2026",
-    title: "District Prayer Meeting",
-    description:
-      "The entire district is invited to join us for a special time of prayer and intercession.",
-    isNew: true,
-  },
-  {
-    id: 3,
-    image: announcement1,
-    category: "ANNOUNCEMENT",
-    date: "AUG 26, 2026",
-    title: "Youth Ministry Meeting",
-    description:
-      "All young people are encouraged to join us as we grow together in Christ and fellowship.",
-    isNew: false,
-  },
-];
+import { getAnnouncements } from "../../api/api";
 
 const Announcements = () => {
+  const [announcements, setAnnouncements] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadAnnouncements = async () => {
+      try {
+        const data = await getAnnouncements();
+
+        // Homepage only shows latest 3
+        setAnnouncements(data.slice(0, 3));
+      } catch (error) {
+        console.error(
+          "Failed to load announcements:",
+          error
+        );
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadAnnouncements();
+  }, []);
+
+  const formatDate = (date) => {
+    if (!date) return "";
+
+    return new Date(`${date}T00:00:00`)
+      .toLocaleDateString("en-US", {
+        month: "short",
+        day: "numeric",
+        year: "numeric",
+      })
+      .toUpperCase();
+  };
+
+  if (loading) {
+    return null;
+  }
+
+  if (announcements.length === 0) {
+    return null;
+  }
+
   return (
     <section className="announcements-section">
       <div className="announcements-container">
@@ -54,16 +65,18 @@ const Announcements = () => {
           </h2>
 
           <p>
-            Keep up to date with the latest news, stories and important
-            information from our district.
+            Keep up to date with the latest news, stories and
+            important information from our district.
           </p>
 
         </div>
+
 
         {/* CARDS */}
         <div className="announcements-grid">
 
           {announcements.map((announcement) => (
+
             <article
               className="announcement-card"
               key={announcement.id}
@@ -72,19 +85,26 @@ const Announcements = () => {
               {/* IMAGE */}
               <div className="announcement-image-wrapper">
 
-                <img
-                  src={announcement.image}
-                  alt={announcement.title}
-                  className="announcement-image"
-                />
+                {announcement.image ? (
+                  <img
+                    src={announcement.image}
+                    alt={announcement.title}
+                    className="announcement-image"
+                  />
+                ) : (
+                  <div className="announcement-image-placeholder">
+                    Announcement
+                  </div>
+                )}
 
-                {announcement.isNew && (
+                {announcement.is_new && (
                   <span className="announcement-new">
                     NEW
                   </span>
                 )}
 
               </div>
+
 
               {/* CONTENT */}
               <div className="announcement-content">
@@ -100,7 +120,9 @@ const Announcements = () => {
                   </span>
 
                   <span className="announcement-date">
-                    {announcement.date}
+                    {formatDate(
+                      announcement.published_date
+                    )}
                   </span>
 
                 </div>
@@ -113,25 +135,33 @@ const Announcements = () => {
                   {announcement.description}
                 </p>
 
-                <button className="announcement-link">
+                <Link
+                  to={`/announcements/${announcement.slug}`}
+                  className="announcement-link"
+                >
                   Read Full Announcement
                   <span>→</span>
-                </button>
+                </Link>
 
               </div>
 
             </article>
+
           ))}
 
         </div>
 
-        {/* BUTTON */}
+
+        {/* VIEW ALL */}
         <div className="announcements-bottom">
 
-          <button className="view-announcements-btn">
+          <Link
+            to="/announcements"
+            className="view-announcements-btn"
+          >
             View All Announcements
             <span>→</span>
-          </button>
+          </Link>
 
         </div>
 

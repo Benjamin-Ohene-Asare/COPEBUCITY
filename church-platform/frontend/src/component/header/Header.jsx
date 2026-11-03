@@ -26,8 +26,20 @@ const Header = () => {
           <Link to="/sermons" onClick={() => setMenuOpen(false)}>Sermons</Link>
           <Link to="/events" onClick={() => setMenuOpen(false)}>Events</Link>
           <Link to="/gallery" onClick={() => setMenuOpen(false)}>Gallery</Link>
-          <Link to="/live" onClick={() => setMenuOpen(false)}>Watch Live</Link>
-          <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+          <Link to="/watch-live" onClick={() => setMenuOpen(false)}>Watch Live</Link>
+        
+       <Link to="/document" onClick={() => setMenuOpen(false)}>
+
+  Documents
+</Link>
+
+<Link
+  to="/photo-tag"
+  onClick={() => setMenuOpen(false)}
+>
+  Photo Tag
+</Link>
+
         </nav>
       </div>
     </header>

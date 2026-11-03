@@ -1,0 +1,481 @@
+* {
+  box-sizing: border-box;
+}
+
+
+.media-admin-page {
+  width: 100%;
+  min-height: 100vh;
+
+  background:
+    radial-gradient(
+      circle at top right,
+      rgba(37, 92, 198, 0.13),
+      transparent 30%
+    ),
+    #070d18;
+
+  color: #ffffff;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.media-admin-header {
+  width: 100%;
+
+  min-height: 105px;
+
+  padding: 22px 5%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  border-bottom:
+    1px solid #19253a;
+
+  background:
+    rgba(8, 15, 27, 0.96);
+}
+
+
+.media-admin-brand-label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #4c83ff;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+
+.media-admin-header h1 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 26px;
+}
+
+
+.media-admin-header p {
+  margin: 6px 0 0;
+
+  color: #76859b;
+
+  font-size: 11px;
+}
+
+
+.media-admin-header-status {
+  min-height: 42px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 0 15px;
+
+  border:
+    1px solid #1e3a30;
+
+  border-radius: 8px;
+
+  background: #0b1918;
+
+  color: #4bd587;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  text-transform: uppercase;
+}
+
+
+.media-admin-status-dot {
+  width: 8px;
+  height: 8px;
+
+  border-radius: 50%;
+
+  background: #3bd87e;
+
+  box-shadow:
+    0 0 12px
+    rgba(59, 216, 126, 0.55);
+}
+
+
+/* =========================================
+   CONTENT
+========================================= */
+
+.media-admin-container {
+  width: min(
+    1450px,
+    92%
+  );
+
+  margin: 0 auto;
+
+  padding:
+    45px 0 80px;
+}
+
+
+/* INTRO */
+
+.media-admin-intro {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 40px;
+
+  margin-bottom: 50px;
+}
+
+
+.media-admin-intro > div > span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #4d83f8;
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 2px;
+}
+
+
+.media-admin-intro h2 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size:
+    clamp(
+      28px,
+      3vw,
+      42px
+    );
+
+  font-weight: 600;
+}
+
+
+.media-admin-intro h2 strong {
+  color: #4d83f8;
+}
+
+
+.media-admin-intro > p {
+  max-width: 420px;
+
+  margin: 0;
+
+  color: #738197;
+
+  font-size: 11px;
+
+  line-height: 1.65;
+}
+
+
+/* =========================================
+   SECTION
+========================================= */
+
+.media-admin-section {
+  margin-bottom: 52px;
+}
+
+
+.media-admin-section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-bottom: 18px;
+}
+
+
+.media-admin-section-heading span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #657a9a;
+
+  font-size: 7px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.8px;
+}
+
+
+.media-admin-section-heading h2 {
+  margin: 0;
+
+  color: #ffffff;
+
+  font-size: 21px;
+}
+
+
+.media-admin-section-heading p {
+  max-width: 380px;
+
+  margin: 0;
+
+  color: #637187;
+
+  font-size: 9px;
+}
+
+
+/* =========================================
+   GRID
+========================================= */
+
+.media-admin-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+
+  gap: 13px;
+}
+
+
+.media-admin-grid-featured {
+  grid-template-columns:
+    repeat(
+      3,
+      minmax(0, 1fr)
+    );
+}
+
+
+.media-admin-card-link {
+  display: block;
+
+  color: inherit;
+
+  text-decoration: none;
+}
+
+
+/* =========================================
+   CARD
+========================================= */
+
+.media-admin-card {
+  min-height: 205px;
+
+  height: 100%;
+
+  padding: 19px;
+
+  display: flex;
+  flex-direction: column;
+
+  border:
+    1px solid #1b2941;
+
+  border-radius: 10px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #0c1728,
+      #09111e
+    );
+
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+
+.media-admin-card:hover {
+  transform:
+    translateY(-3px);
+
+  border-color:
+    #356ed7;
+
+  background:
+    linear-gradient(
+      145deg,
+      #10203a,
+      #0a1424
+    );
+}
+
+
+.media-admin-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+.media-admin-badge {
+  padding: 5px 8px;
+
+  border-radius: 4px;
+
+  background: #111f36;
+
+  color: #6b96f4;
+
+  font-size: 7px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+
+.media-admin-arrow {
+  color: #5d6d84;
+
+  font-size: 18px;
+
+  transition: 0.2s ease;
+}
+
+
+.media-admin-card:hover
+.media-admin-arrow {
+  color: #5590ff;
+
+  transform:
+    translateX(3px);
+}
+
+
+.media-admin-card-content {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.media-admin-card-content h3 {
+  margin:
+    24px 0 8px;
+
+  color: #ffffff;
+
+  font-size: 18px;
+}
+
+
+.media-admin-card-content p {
+  margin: 0;
+
+  max-width: 340px;
+
+  color: #75849a;
+
+  font-size: 10px;
+
+  line-height: 1.6;
+}
+
+
+.media-admin-card-footer {
+  padding-top: 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-top:
+    1px solid #17243a;
+
+  color: #8ca1c0;
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+
+.media-admin-card-footer span:last-child {
+  color: #4d83f8;
+
+  font-size: 14px;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1000px) {
+
+  .media-admin-grid,
+  .media-admin-grid-featured {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .media-admin-header {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+
+  .media-admin-intro,
+  .media-admin-section-heading {
+    align-items: flex-start;
+
+    flex-direction: column;
+  }
+
+
+  .media-admin-grid,
+  .media-admin-grid-featured {
+    grid-template-columns: 1fr;
+  }
+
+
+  .media-admin-container {
+    padding-top: 30px;
+  }
+
+}

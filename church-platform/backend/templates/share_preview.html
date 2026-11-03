@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ title }}</title>
+
+    <!-- OPEN GRAPH: FACEBOOK / WHATSAPP -->
+    <meta property="og:title" content="{{ title }}">
+    <meta property="og:description" content="{{ description }}">
+    <meta property="og:image" content="{{ image }}">
+    <meta property="og:url" content="{{ share_url }}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Ebukrom District">
+
+    <!-- TWITTER / X -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ title }}">
+    <meta name="twitter:description" content="{{ description }}">
+    <meta name="twitter:image" content="{{ image }}">
+
+    <!-- REDIRECT USER TO REACT -->
+    <meta
+        http-equiv="refresh"
+        content="0;url={{ frontend_url }}"
+    >
+
+</head>
+
+<body>
+
+    <p>
+        Opening {{ title }}...
+    </p>
+
+    <script>
+        window.location.replace("{{ frontend_url|escapejs }}");
+    </script>
+
+</body>
+</html>

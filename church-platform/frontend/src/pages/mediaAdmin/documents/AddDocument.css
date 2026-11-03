@@ -1,0 +1,249 @@
+.add-document-page {
+  width: 100%;
+}
+
+.add-document-heading {
+  margin-bottom: 23px;
+}
+
+.add-document-heading > a {
+  display: inline-block;
+  margin-bottom: 18px;
+  color: #61799e;
+  font-size: 9px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.add-document-heading > span {
+  display: block;
+  margin-bottom: 5px;
+  color: #4b7de3;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+}
+
+.add-document-heading h2 {
+  margin: 0;
+  color: #172033;
+  font-size: 27px;
+}
+
+.add-document-heading p {
+  margin: 6px 0 0;
+  color: #7b889b;
+  font-size: 10px;
+}
+
+.add-document-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(280px, 0.7fr);
+  gap: 15px;
+}
+
+.add-document-side {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.add-document-card {
+  padding: 20px;
+  border: 1px solid #e0e6ef;
+  border-radius: 9px;
+  background: #fff;
+}
+
+.add-document-card-title {
+  margin-bottom: 20px;
+}
+
+.add-document-card-title span {
+  display: block;
+  margin-bottom: 4px;
+  color: #517fdc;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 1.3px;
+}
+
+.add-document-card-title h3 {
+  margin: 0;
+  color: #202b3d;
+  font-size: 16px;
+}
+
+.document-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.document-form-field {
+  margin-bottom: 15px;
+}
+
+.document-form-field label {
+  display: block;
+  margin-bottom: 6px;
+  color: #536177;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.document-form-field input,
+.document-form-field select,
+.document-form-field textarea {
+  width: 100%;
+  border: 1px solid #dce3ed;
+  border-radius: 6px;
+  outline: none;
+  background: #fbfcfe;
+  color: #243047;
+  font-family: inherit;
+  font-size: 10px;
+}
+
+.document-form-field input,
+.document-form-field select {
+  height: 42px;
+  padding: 0 12px;
+}
+
+.document-form-field textarea {
+  min-height: 200px;
+  padding: 12px;
+  resize: vertical;
+}
+
+.document-file-upload {
+  min-height: 190px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed #bdc9d9;
+  border-radius: 8px;
+  background: #f8fafc;
+  cursor: pointer;
+}
+
+.document-upload-mark {
+  width: 38px;
+  height: 38px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #eaf1ff;
+  color: #3972df;
+  font-size: 19px;
+}
+
+.document-file-upload strong {
+  color: #44556f;
+  font-size: 10px;
+}
+
+.document-file-upload span {
+  margin-top: 5px;
+  color: #8a96a8;
+  font-size: 8px;
+}
+
+.document-selected-file {
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 6px;
+  background: #f1f5fb;
+}
+
+.document-selected-file strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #445269;
+  font-size: 8px;
+}
+
+.document-selected-file span {
+  color: #8995a7;
+  font-size: 7px;
+}
+
+.document-publish-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.document-publish-option strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #344157;
+  font-size: 9px;
+}
+
+.document-publish-option span {
+  color: #8995a7;
+  font-size: 7px;
+}
+
+.add-document-actions {
+  margin-top: 15px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+}
+
+.add-document-actions a,
+.add-document-actions button {
+  min-height: 40px;
+  padding: 0 17px;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 6px;
+  font-size: 9px;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.add-document-actions a {
+  border: 1px solid #d9e0e9;
+  background: #fff;
+  color: #657388;
+}
+
+.add-document-actions button {
+  border: none;
+  background: #2868e8;
+  color: #fff;
+  cursor: pointer;
+}
+
+.add-document-actions button:disabled {
+  opacity: 0.6;
+}
+
+.add-document-error {
+  margin-bottom: 15px;
+  padding: 11px;
+  border-radius: 6px;
+  background: #fff1f3;
+  color: #b52b3c;
+  font-size: 9px;
+}
+
+@media (max-width: 900px) {
+  .add-document-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .document-form-row {
+    grid-template-columns: 1fr;
+  }
+}
