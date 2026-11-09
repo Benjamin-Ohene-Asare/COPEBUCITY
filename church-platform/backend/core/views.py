@@ -437,13 +437,13 @@ def apply_photo_tag(request):
         base_image = base_image.convert("RGBA")
 
         # OPEN PNG TAG
-        tag_image = Image.open(
-            photo_tag.png_file.path
-        ).convert("RGBA")
-
-        photo_width, photo_height = (
-            base_image.size
-        )
+        # OPEN PNG TAG FROM SUPABASE OR LOCAL STORAGE
+        with photo_tag.png_file.open("rb") as tag_file:
+            with Image.open(tag_file) as source_tag:
+                tag_image = source_tag.convert("RGBA")
+                photo_width, photo_height = (
+                    base_image.size
+                )
 
         tag_width, tag_height = (
             tag_image.size
