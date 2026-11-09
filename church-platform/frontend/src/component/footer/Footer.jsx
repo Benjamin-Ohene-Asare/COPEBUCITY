@@ -1,6 +1,12 @@
 import React from "react";
-import "./Footer.css";
+import {
+  FaArrowRight,
+  FaMapMarkerAlt,
+  FaPhoneAlt,
+  FaEnvelope,
+} from "react-icons/fa";
 
+import "./Footer.css";
 import logo from "../../assets/logo.png";
 
 const Footer = () => {
@@ -8,7 +14,6 @@ const Footer = () => {
 
   return (
     <footer className="footer">
-
       {/* TOP CTA */}
       <div className="footer-cta">
         <div className="footer-cta-content">
@@ -29,19 +34,16 @@ const Footer = () => {
 
           <a href="#contact" className="footer-cta-btn">
             PLAN YOUR VISIT
-            <span>→</span>
+            <FaArrowRight aria-hidden="true" />
           </a>
         </div>
       </div>
 
-
       {/* MAIN FOOTER */}
       <div className="footer-main">
         <div className="footer-container">
-
           {/* CHURCH INFO */}
           <div className="footer-brand">
-
             <div className="footer-logo-area">
               <img
                 src={logo}
@@ -51,9 +53,7 @@ const Footer = () => {
 
               <div>
                 <h3>Ebukrom District</h3>
-                <span>
-                  The Church of Pentecost
-                </span>
+                <span>The Church of Pentecost</span>
               </div>
             </div>
 
@@ -66,9 +66,7 @@ const Footer = () => {
             <div className="footer-area">
               ELMINA AREA • GHANA
             </div>
-
           </div>
-
 
           {/* QUICK LINKS */}
           <div className="footer-column">
@@ -78,31 +76,23 @@ const Footer = () => {
               <li>
                 <a href="/">Home</a>
               </li>
-
               <li>
                 <a href="#about">About Us</a>
               </li>
-
               <li>
                 <a href="#leaders">Our Leaders</a>
               </li>
-
               <li>
                 <a href="#ministries">Ministries</a>
               </li>
-
               <li>
                 <a href="#events">Events</a>
               </li>
-
               <li>
-                <a href="#announcements">
-                  Announcements
-                </a>
+                <a href="#announcements">Announcements</a>
               </li>
             </ul>
           </div>
-
 
           {/* MINISTRIES */}
           <div className="footer-column">
@@ -110,37 +100,22 @@ const Footer = () => {
 
             <ul>
               <li>
-                <a href="#ministries">
-                  Youth Ministry
-                </a>
+                <a href="#ministries">Youth Ministry</a>
               </li>
-
               <li>
-                <a href="#ministries">
-                  PEMEM
-                </a>
+                <a href="#ministries">PEMEM</a>
               </li>
-
               <li>
-                <a href="#ministries">
-                  Women's Ministry
-                </a>
+                <a href="#ministries">Women's Ministry</a>
               </li>
-
               <li>
-                <a href="#ministries">
-                  Children's Ministry
-                </a>
+                <a href="#ministries">Children's Ministry</a>
               </li>
-
               <li>
-                <a href="#ministries">
-                  Evangelism Ministry
-                </a>
+                <a href="#ministries">Evangelism Ministry</a>
               </li>
             </ul>
           </div>
-
 
           {/* CONTACT */}
           <div
@@ -151,7 +126,7 @@ const Footer = () => {
 
             <div className="footer-contact-item">
               <span className="footer-contact-icon">
-                ⌖
+                <FaMapMarkerAlt aria-hidden="true" />
               </span>
 
               <div>
@@ -164,25 +139,23 @@ const Footer = () => {
               </div>
             </div>
 
-
             <div className="footer-contact-item">
               <span className="footer-contact-icon">
-                ☎
+                <FaPhoneAlt aria-hidden="true" />
               </span>
 
               <div>
                 <small>PHONE</small>
 
-                <a href="tel:+233547543730">
+                <a href="tel:+233541254645">
                   +233 54 125 4645
                 </a>
               </div>
             </div>
 
-
             <div className="footer-contact-item">
               <span className="footer-contact-icon">
-                ✉
+                <FaEnvelope aria-hidden="true" />
               </span>
 
               <div>
@@ -193,29 +166,21 @@ const Footer = () => {
                 </a>
               </div>
             </div>
-
           </div>
-
         </div>
       </div>
-
 
       {/* BOTTOM */}
       <div className="footer-bottom">
         <div className="footer-bottom-container">
-
           <p>
             © {currentYear} The Church of Pentecost –
             Ebukrom District. All Rights Reserved.
           </p>
 
-          <p className="footer-credit">
-            Elmina Area
-          </p>
-
+          <p className="footer-credit">Elmina Area</p>
         </div>
       </div>
-
     </footer>
   );
 };

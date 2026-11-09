@@ -561,3 +561,34 @@
     gap: 8px;
   }
 }
+
+
+.footer .footer-contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.footer .footer-contact-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.footer .footer-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.footer .footer-cta-btn svg {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s ease;
+}
+
+.footer .footer-cta-btn:hover svg {
+  transform: translateX(4px);
+}
