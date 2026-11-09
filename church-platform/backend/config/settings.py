@@ -224,3 +224,28 @@ CHANNEL_LAYERS = {
         "BACKEND": "channels.layers.InMemoryChannelLayer",
     }
 }
+
+# Uploaded files are stored in Supabase Storage.
+STORAGES = {
+    "default": {
+        "BACKEND": "storages.backends.s3.S3Storage",
+        "OPTIONS": {
+            "access_key": os.environ["SUPABASE_S3_ACCESS_KEY_ID"],
+            "secret_key": os.environ["SUPABASE_S3_SECRET_ACCESS_KEY"],
+            "bucket_name": os.environ["SUPABASE_STORAGE_BUCKET_NAME"],
+            "endpoint_url": os.environ["SUPABASE_S3_ENDPOINT_URL"],
+            "region_name": os.environ["SUPABASE_S3_REGION_NAME"],
+            "signature_version": "s3v4",
+            "addressing_style": "path",
+            "default_acl": None,
+            "file_overwrite": False,
+            "querystring_auth": True,
+            "querystring_expire": 3600,
+        },
+    },
+    "staticfiles": {
+        "BACKEND": (
+            "django.contrib.staticfiles.storage.StaticFilesStorage"
+        ),
+    },
+}
