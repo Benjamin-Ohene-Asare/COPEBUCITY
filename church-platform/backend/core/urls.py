@@ -1,6 +1,7 @@
 from django.urls import path
 
 from . import views
+from .sitemap_views import website_sitemap
 
 urlpatterns = [
     path(
@@ -142,6 +143,12 @@ path(
     "announcements/<slug:slug>/",
     views.announcement_detail,
     name="announcement-detail"
+),
+
+path(
+    "sitemap.xml",
+    website_sitemap,
+    name="website-sitemap",
 ),
 
 ]
