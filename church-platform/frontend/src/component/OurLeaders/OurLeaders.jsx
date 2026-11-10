@@ -31,15 +31,17 @@ const leaders = [
 
 const OurLeaders = () => {
   return (
-    <section className="leaders-section">
-      <div className="leaders-container">
-
-        <div className="leaders-heading">
-          <span className="leaders-small-title">
+    <section
+      className="our-leaders-section"
+      aria-labelledby="our-leaders-title"
+    >
+      <div className="our-leaders-container">
+        <div className="our-leaders-heading">
+          <span className="our-leaders-small-title">
             DEDICATED SERVANTS
           </span>
 
-          <h2>
+          <h2 id="our-leaders-title">
             Our <span>Leaders</span>
           </h2>
 
@@ -49,36 +51,43 @@ const OurLeaders = () => {
           </p>
         </div>
 
-        <div className="leaders-grid">
+        <div className="our-leaders-grid">
           {leaders.map((leader) => (
-            <div className="leader-card" key={leader.id}>
-
+            <article
+              className="our-leaders-card"
+              key={leader.id}
+            >
               <img
                 src={leader.image}
                 alt={leader.name}
-                className="leader-image"
+                className="our-leaders-image"
+                loading="lazy"
               />
 
-              <div className="leader-overlay"></div>
+              <div
+                className="our-leaders-overlay"
+                aria-hidden="true"
+              />
 
-              <span className="leader-badge">
+              <span className="our-leaders-badge">
                 {leader.role}
               </span>
 
-              <div className="leader-content">
-                <span className="leader-position">
+              <div className="our-leaders-content">
+                <span className="our-leaders-position">
                   {leader.title}
                 </span>
 
                 <h3>{leader.name}</h3>
 
-                <div className="leader-line"></div>
+                <div
+                  className="our-leaders-line"
+                  aria-hidden="true"
+                />
               </div>
-
-            </div>
+            </article>
           ))}
         </div>
-
       </div>
     </section>
   );

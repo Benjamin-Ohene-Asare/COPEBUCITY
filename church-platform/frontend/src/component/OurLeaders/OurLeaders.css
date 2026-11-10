@@ -1,243 +1,228 @@
-.leaders-section {
+.our-leaders-section {
   width: 100%;
+  padding: 100px 7%;
   background: #02091d;
-  padding: 100px 10%;
   color: #ffffff;
   overflow: hidden;
 }
 
-.leaders-container {
+.our-leaders-section,
+.our-leaders-section * {
+  box-sizing: border-box;
+}
+
+.our-leaders-container {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
 }
 
-/* =========================
-   HEADING
-========================= */
+/* HEADING */
 
-.leaders-heading {
+.our-leaders-heading {
   margin-bottom: 55px;
 }
 
-.leaders-small-title {
+.our-leaders-small-title {
   display: block;
   margin-bottom: 12px;
-
+  color: #ffc800;
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 4px;
-
-  color: #ffc800;
 }
 
-.leaders-heading h2 {
+.our-leaders-heading h2 {
   margin: 0;
-
+  color: #ffffff;
   font-size: clamp(42px, 5vw, 72px);
   line-height: 1;
   font-weight: 800;
   letter-spacing: -2px;
 }
 
-.leaders-heading h2 span {
+.our-leaders-heading h2 span {
   color: #347ff4;
 }
 
-.leaders-heading p {
+.our-leaders-heading p {
   max-width: 600px;
   margin-top: 20px;
-
   color: rgba(255, 255, 255, 0.65);
   font-size: 15px;
   line-height: 1.8;
 }
 
+/* GRID */
 
-/* =========================
-   GRID
-========================= */
-
-.leaders-grid {
-  width: 100%;
-
+.our-leaders-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 34px;
 }
 
+/* FULL-HEIGHT IMAGE CARDS */
 
-/* =========================
-   CARD
-========================= */
-
-.leader-card {
+.our-leaders-card {
   position: relative;
-
+  isolation: isolate;
   width: 100%;
+  min-width: 0;
   height: 520px;
-
-  border-radius: 28px;
+  border-radius: 22px;
   overflow: hidden;
-
   background: #07132c;
 }
 
-.leader-image {
+.our-leaders-image {
+  position: absolute;
+  inset: 0;
+  display: block;
   width: 100%;
   height: 100%;
-
-  display: block;
+  max-width: none;
   object-fit: cover;
   object-position: center top;
-
   transition: transform 0.5s ease;
 }
 
-.leader-card:hover .leader-image {
+.our-leaders-card:hover .our-leaders-image {
   transform: scale(1.04);
 }
 
+/* GRADIENT OVER THE PHOTO */
 
-/* DARK IMAGE GRADIENT */
-
-.leader-overlay {
+.our-leaders-overlay {
   position: absolute;
   inset: 0;
+  z-index: 1;
+  pointer-events: none;
 
-  background:
-    linear-gradient(
-      to top,
-      rgba(1, 7, 24, 0.92) 0%,
-      rgba(1, 7, 24, 0.35) 42%,
-      rgba(1, 7, 24, 0.02) 72%
-    );
+  background: linear-gradient(
+    to top,
+    rgba(1, 7, 24, 0.96) 0%,
+    rgba(1, 7, 24, 0.65) 22%,
+    rgba(1, 7, 24, 0.12) 48%,
+    transparent 70%
+  );
 }
 
+/* BADGE */
 
-/* =========================
-   BADGE
-========================= */
-
-.leader-badge {
+.our-leaders-badge {
   position: absolute;
   top: 22px;
   right: 22px;
+  z-index: 2;
 
-  background: #347ff4;
-  color: #ffffff;
-
+  max-width: calc(100% - 44px);
   padding: 9px 16px;
   border-radius: 30px;
 
+  background: #347ff4;
+  color: #ffffff;
   font-size: 9px;
   font-weight: 800;
   letter-spacing: 0.8px;
+  text-align: center;
 }
 
+/* CARD TEXT */
 
-/* =========================
-   CARD TEXT
-========================= */
-
-.leader-content {
+.our-leaders-content {
   position: absolute;
-
-  left: 30px;
-  right: 30px;
-  bottom: 30px;
-
+  left: 28px;
+  right: 28px;
+  bottom: 28px;
   z-index: 2;
 }
 
-.leader-position {
+.our-leaders-position {
   display: block;
-
   margin-bottom: 8px;
-
   color: #ffc800;
-
   font-size: 10px;
   font-weight: 800;
   letter-spacing: 2px;
 }
 
-.leader-content h3 {
+.our-leaders-content h3 {
   margin: 0;
-
+  color: #ffffff;
   font-size: 24px;
   line-height: 1.2;
   font-weight: 700;
-
-  color: #ffffff;
+  overflow-wrap: break-word;
 }
 
-.leader-line {
+.our-leaders-line {
   width: 38px;
   height: 3px;
-
   margin-top: 15px;
-
   border-radius: 20px;
   background: #347ff4;
 }
 
-
-/* =========================
-   TABLET
-========================= */
+/* TABLET */
 
 @media (max-width: 1000px) {
-
-  .leaders-section {
+  .our-leaders-section {
     padding: 80px 5%;
   }
 
-  .leaders-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .our-leaders-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
   }
 
-  .leader-card {
+  .our-leaders-card {
     height: 480px;
   }
 }
 
-
-/* =========================
-   MOBILE
-========================= */
+/* MOBILE */
 
 @media (max-width: 650px) {
-
-  .leaders-section {
+  .our-leaders-section {
     padding: 70px 20px;
   }
 
-  .leaders-heading {
+  .our-leaders-heading {
     margin-bottom: 35px;
   }
 
-  .leaders-heading h2 {
+  .our-leaders-heading h2 {
     font-size: 42px;
   }
 
-  .leaders-grid {
-    grid-template-columns: 1fr;
-    gap: 24px;
+  .our-leaders-grid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 440px;
+    margin: 0 auto;
   }
 
-  .leader-card {
+  .our-leaders-card {
     height: 470px;
-    border-radius: 22px;
+    border-radius: 18px;
   }
 
-  .leader-content {
+  .our-leaders-content {
     left: 24px;
     right: 24px;
     bottom: 25px;
   }
 
-  .leader-content h3 {
+  .our-leaders-content h3 {
     font-size: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .our-leaders-image {
+    transition: none;
+  }
+
+  .our-leaders-card:hover .our-leaders-image {
+    transform: none;
   }
 }

@@ -1,344 +1,409 @@
-import React, { useEffect, useMemo, useState } from "react";
-import "./PhotoTag.css";
+import React, {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
+import "./PhotoTag.css";
 import {
   getPhotoTags,
   applyPhotoTag,
 } from "../../api/api";
 
+const MAX_PHOTOS = 5;
+
+const POSITIONS = [
+  ["bottom-left", "Bottom Left"],
+  ["bottom-center", "Bottom Center"],
+  ["bottom-right", "Bottom Right"],
+];
+
 const PhotoTag = () => {
   const [tags, setTags] = useState([]);
   const [selectedTag, setSelectedTag] = useState("");
-
-  const [photo, setPhoto] = useState(null);
-  const [photoPreview, setPhotoPreview] = useState("");
-
+  const [photos, setPhotos] = useState([]);
   const [position, setPosition] = useState("bottom-center");
-
-  const [resultBlob, setResultBlob] = useState(null);
-  const [resultPreview, setResultPreview] = useState("");
-
   const [loadingTags, setLoadingTags] = useState(true);
   const [processing, setProcessing] = useState(false);
+  const [progress, setProgress] = useState({
+    completed: 0,
+    total: 0,
+  });
   const [error, setError] = useState("");
 
-  // LOAD AVAILABLE PNG TAGS
+  const urlsRef = useRef(new Set());
+  const busyRef = useRef(false);
+  const mountedRef = useRef(false);
+
   useEffect(() => {
+    mountedRef.current = true;
+    let cancelled = false;
+
     const loadTags = async () => {
       try {
         const data = await getPhotoTags();
 
-        setTags(data);
+        if (cancelled) return;
 
-        if (data.length > 0) {
-          setSelectedTag(String(data[0].id));
+        const availableTags = Array.isArray(data) ? data : [];
+        setTags(availableTags);
+
+        if (availableTags.length > 0) {
+          setSelectedTag(String(availableTags[0].id));
         }
-      } catch (error) {
-        console.error("Failed to load tags:", error);
-        setError("Unable to load programme tags.");
+      } catch {
+        if (!cancelled) {
+          setError("Unable to load programme tags.");
+        }
       } finally {
-        setLoadingTags(false);
+        if (!cancelled) {
+          setLoadingTags(false);
+        }
       }
     };
 
     loadTags();
+
+    return () => {
+      cancelled = true;
+      mountedRef.current = false;
+
+      urlsRef.current.forEach((url) => {
+        URL.revokeObjectURL(url);
+      });
+
+      urlsRef.current.clear();
+    };
   }, []);
 
-  // CLEAN OBJECT URLS
-  useEffect(() => {
-    return () => {
-      if (photoPreview) {
-        URL.revokeObjectURL(photoPreview);
-      }
+  const selectedTagData = useMemo(
+    () =>
+      tags.find(
+        (tag) => String(tag.id) === String(selectedTag)
+      ),
+    [tags, selectedTag]
+  );
 
-      if (resultPreview) {
-        URL.revokeObjectURL(resultPreview);
-      }
-    };
-  }, [photoPreview, resultPreview]);
+  const createPreview = (blob) => {
+    const url = URL.createObjectURL(blob);
+    urlsRef.current.add(url);
+    return url;
+  };
 
-  const selectedTagData = useMemo(() => {
-    return tags.find(
-      (tag) => String(tag.id) === String(selectedTag)
+  const revokePreview = (url) => {
+    if (!url) return;
+
+    URL.revokeObjectURL(url);
+    urlsRef.current.delete(url);
+  };
+
+  const updatePhoto = (id, changes) => {
+    if (!mountedRef.current) return;
+
+    setPhotos((previous) =>
+      previous.map((photo) =>
+        photo.id === id
+          ? { ...photo, ...changes }
+          : photo
+      )
     );
-  }, [tags, selectedTag]);
+  };
 
-  const handlePhotoChange = (e) => {
-    const file = e.target.files?.[0];
+  const resetResults = () => {
+    photos.forEach((photo) => {
+      revokePreview(photo.resultUrl);
+    });
 
-    if (!file) return;
+    setPhotos((previous) =>
+      previous.map((photo) => ({
+        ...photo,
+        resultUrl: "",
+        status: "ready",
+        message: "",
+      }))
+    );
 
-    if (!file.type.startsWith("image/")) {
-      setError("Please choose a valid image.");
+    setProgress({ completed: 0, total: 0 });
+    setError("");
+  };
+
+  const handlePhotoChange = (event) => {
+    if (busyRef.current) return;
+
+    const files = Array.from(event.target.files || []);
+    event.target.value = "";
+
+    if (!files.length) return;
+
+    if (photos.length + files.length > MAX_PHOTOS) {
+      setError(
+        "You can select up to 5 photos. Remove a photo before adding more."
+      );
       return;
     }
 
-    if (photoPreview) {
-      URL.revokeObjectURL(photoPreview);
+    if (files.some((file) => !file.type.startsWith("image/"))) {
+      setError("Please select image files only.");
+      return;
     }
 
-    if (resultPreview) {
-      URL.revokeObjectURL(resultPreview);
-    }
+    const newPhotos = files.map((file, index) => ({
+      id: `${Date.now()}-${index}-${Math.random()}`,
+      file,
+      previewUrl: createPreview(file),
+      resultUrl: "",
+      status: "ready",
+      message: "",
+    }));
 
-    setPhoto(file);
-    setPhotoPreview(URL.createObjectURL(file));
+    setPhotos((previous) => [...previous, ...newPhotos]);
+    setProgress({ completed: 0, total: 0 });
+    setError("");
+  };
 
-    setResultBlob(null);
-    setResultPreview("");
+  const removePhoto = (id) => {
+    if (busyRef.current) return;
+
+    const photo = photos.find((item) => item.id === id);
+    if (!photo) return;
+
+    revokePreview(photo.previewUrl);
+    revokePreview(photo.resultUrl);
+
+    setPhotos((previous) =>
+      previous.filter((item) => item.id !== id)
+    );
+
+    setProgress({ completed: 0, total: 0 });
     setError("");
   };
 
   const handleApplyTag = async () => {
-    if (!photo) {
-      setError("Please choose a photo first.");
+    if (busyRef.current) return;
+
+    if (!photos.length || !selectedTag) {
+      setError("Choose your photos and a programme tag first.");
       return;
     }
 
-    if (!selectedTag) {
-      setError("Please choose a programme tag.");
-      return;
-    }
+    // Capture one tag and position for this whole batch.
+    const batch = [...photos];
+    const batchTag = selectedTag;
+    const batchPosition = position;
+
+    busyRef.current = true;
+    setProcessing(true);
+    setError("");
+    setProgress({
+      completed: 0,
+      total: batch.length,
+    });
+
+    batch.forEach((photo) => {
+      revokePreview(photo.resultUrl);
+    });
+
+    setPhotos((previous) =>
+      previous.map((photo) => ({
+        ...photo,
+        resultUrl: "",
+        status: "waiting",
+        message: "",
+      }))
+    );
+
+    let failed = 0;
 
     try {
-      setProcessing(true);
-      setError("");
+      for (let index = 0; index < batch.length; index += 1) {
+        if (!mountedRef.current) break;
 
-      const formData = new FormData();
+        const photo = batch[index];
+        updatePhoto(photo.id, { status: "processing" });
 
-      formData.append("photo", photo);
-      formData.append("tag_id", selectedTag);
-      formData.append("position", position);
+        try {
+          const formData = new FormData();
 
-      const blob = await applyPhotoTag(formData);
+          formData.append("photo", photo.file);
+          formData.append("tag_id", batchTag);
+          formData.append("position", batchPosition);
 
-      if (resultPreview) {
-        URL.revokeObjectURL(resultPreview);
+          const blob = await applyPhotoTag(formData);
+
+          if (!mountedRef.current) break;
+
+          if (!(blob instanceof Blob) || blob.size === 0) {
+            throw new Error("The server returned an empty image.");
+          }
+
+          updatePhoto(photo.id, {
+            status: "done",
+            resultUrl: createPreview(blob),
+            message: "",
+          });
+        } catch (requestError) {
+          failed += 1;
+
+          updatePhoto(photo.id, {
+            status: "error",
+            message:
+              requestError.message || "Unable to process this photo.",
+          });
+        }
+
+        if (mountedRef.current) {
+          setProgress({
+            completed: index + 1,
+            total: batch.length,
+          });
+        }
       }
 
-      const previewUrl = URL.createObjectURL(blob);
-
-      setResultBlob(blob);
-      setResultPreview(previewUrl);
-
-    } catch (error) {
-      console.error("Tagging failed:", error);
-
-      setError(
-        error.message ||
-        "Unable to apply the tag."
-      );
+      if (mountedRef.current && failed > 0) {
+        setError(
+          `${failed} photo${failed === 1 ? "" : "s"} could not be processed. Successful results are available below.`
+        );
+      }
     } finally {
-      setProcessing(false);
+      busyRef.current = false;
+
+      if (mountedRef.current) {
+        setProcessing(false);
+      }
     }
   };
 
-  const handleDownload = () => {
-    if (!resultBlob || !resultPreview) return;
-
-    const originalName =
-      photo?.name?.replace(/\.[^/.]+$/, "") || "photo";
-
-    const link = document.createElement("a");
-
-    link.href = resultPreview;
-    link.download = `${originalName}-tagged.jpg`;
-
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
+  const downloadName = (file) => {
+    const name = file.name.replace(/\.[^/.]+$/, "") || "photo";
+    return `${name}-tagged.jpg`;
   };
+
+  const completedCount = photos.filter(
+    (photo) => photo.status === "done"
+  ).length;
 
   return (
     <main className="photo-tag-page">
-
-      {/* HERO */}
-
       <section className="photo-tag-hero">
-
         <div className="photo-tag-hero-content">
-
-          <span>
-            MEDIA TOOL
-          </span>
+          <span>MEDIA TOOL</span>
 
           <h1>
             Add Programme <strong>Tag</strong>
           </h1>
 
           <p>
-            Upload a church photo, choose the programme tag
-            and position, then generate a ready-to-post image.
+            Select up to five photos, choose a programme tag
+            and position, then apply it to every photo.
           </p>
-
         </div>
-
       </section>
 
-
-      {/* TOOL */}
-
       <section className="photo-tag-section">
-
         <div className="photo-tag-container">
-
-
-          {/* LEFT CONTROLS */}
-
           <div className="photo-tag-controls">
-
             <div className="photo-tag-heading">
-
-              <span>
-                PHOTO TAGGING
-              </span>
-
-              <h2>
-                Prepare Your Photo
-              </h2>
-
+              <span>PHOTO TAGGING</span>
+              <h2>Prepare Your Photos</h2>
             </div>
 
-
-            {/* SELECT TAG */}
-
             <div className="photo-tag-field">
-
-              <label>
+              <label htmlFor="programme-tag">
                 Programme Tag
               </label>
 
               {loadingTags ? (
-                <p>
-                  Loading tags...
-                </p>
+                <p>Loading tags...</p>
               ) : (
-
                 <select
+                  id="programme-tag"
                   value={selectedTag}
-                  onChange={(e) =>
-                    setSelectedTag(e.target.value)
-                  }
+                  disabled={processing || !tags.length}
+                  onChange={(event) => {
+                    resetResults();
+                    setSelectedTag(event.target.value);
+                  }}
                 >
+                  {!tags.length && (
+                    <option value="">No tags available</option>
+                  )}
 
                   {tags.map((tag) => (
-                    <option
-                      key={tag.id}
-                      value={tag.id}
-                    >
+                    <option key={tag.id} value={tag.id}>
                       {tag.name}
                     </option>
                   ))}
-
                 </select>
-
               )}
-
             </div>
 
-
-            {/* SHOW SELECTED PNG */}
-
             {selectedTagData?.png_file && (
-
               <div className="selected-tag-preview">
-
-                <span>
-                  Selected Tag
-                </span>
+                <span>Selected Tag</span>
 
                 <img
                   src={selectedTagData.png_file}
                   alt={selectedTagData.name}
                 />
-
               </div>
-
             )}
 
-
-            {/* UPLOAD */}
-
             <div className="photo-tag-field">
-
-              <label>
-                Choose Photo
+              <label htmlFor="photo-tag-files">
+                Choose Photos ({photos.length}/{MAX_PHOTOS})
               </label>
 
               <input
+                id="photo-tag-files"
                 type="file"
                 accept="image/*"
+                multiple
+                disabled={
+                  processing || photos.length >= MAX_PHOTOS
+                }
                 onChange={handlePhotoChange}
               />
 
+              <p className="photo-batch-help">
+                You can add photos in separate selections,
+                up to five in total.
+              </p>
             </div>
-
-
-            {/* POSITION */}
 
             <div className="photo-tag-field">
+              <label>Tag Position</label>
 
-              <label>
-                Tag Position
-              </label>
+              <div
+                className="photo-position-options"
+                role="group"
+                aria-label="Tag position"
+              >
+                {POSITIONS.map(([value, label]) => (
+                  <button
+                    key={value}
+                    type="button"
+                    className={position === value ? "active" : ""}
+                    aria-pressed={position === value}
+                    disabled={processing}
+                    onClick={() => {
+                      if (position === value) return;
 
-              <div className="photo-position-options">
-
-                <button
-                  type="button"
-                  className={
-                    position === "bottom-left"
-                      ? "active"
-                      : ""
-                  }
-                  onClick={() =>
-                    setPosition("bottom-left")
-                  }
-                >
-                  Bottom Left
-                </button>
-
-
-                <button
-                  type="button"
-                  className={
-                    position === "bottom-center"
-                      ? "active"
-                      : ""
-                  }
-                  onClick={() =>
-                    setPosition("bottom-center")
-                  }
-                >
-                  Bottom Center
-                </button>
-
-
-                <button
-                  type="button"
-                  className={
-                    position === "bottom-right"
-                      ? "active"
-                      : ""
-                  }
-                  onClick={() =>
-                    setPosition("bottom-right")
-                  }
-                >
-                  Bottom Right
-                </button>
-
+                      resetResults();
+                      setPosition(value);
+                    }}
+                  >
+                    {label}
+                  </button>
+                ))}
               </div>
-
             </div>
 
-
             {error && (
-              <div className="photo-tag-error">
+              <div className="photo-tag-error" role="alert">
                 {error}
               </div>
             )}
-
 
             <button
               type="button"
@@ -346,119 +411,139 @@ const PhotoTag = () => {
               onClick={handleApplyTag}
               disabled={
                 processing ||
-                !photo ||
+                loadingTags ||
+                !photos.length ||
                 !selectedTag
               }
             >
               {processing
-                ? "Processing..."
+                ? `Processing ${Math.min(
+                    progress.completed + 1,
+                    progress.total
+                  )} of ${progress.total}...`
+                : photos.length > 1
+                ? `Apply Tag to All ${photos.length} Photos`
                 : "Apply Tag"}
             </button>
 
-
-            {resultBlob && (
-              <button
-                type="button"
-                className="photo-tag-download"
-                onClick={handleDownload}
-              >
-                Download Tagged Photo
-              </button>
-            )}
-
-          </div>
-
-
-          {/* RIGHT PREVIEW */}
-
-          <div className="photo-tag-preview-panel">
-
-            <div className="photo-tag-preview-heading">
-
-              <span>
-                PREVIEW
-              </span>
-
-              <h3>
-                {resultPreview
-                  ? "Tagged Photo"
-                  : "Original Photo"}
-              </h3>
-
-            </div>
-
-
-            <div className="photo-tag-preview">
-
-              {resultPreview ? (
-
-                <img
-                  src={resultPreview}
-                  alt="Tagged result"
+            {progress.total > 0 && (
+              <div className="photo-batch-progress">
+                <progress
+                  value={progress.completed}
+                  max={progress.total}
+                  aria-label="Photos processed"
                 />
 
-              ) : photoPreview ? (
-
-                <div className="photo-tag-live-preview">
-
-                  <img
-                    src={photoPreview}
-                    alt="Uploaded preview"
-                    className="photo-tag-base-image"
-                  />
-
-
-                  {selectedTagData?.png_file && (
-
-                    <img
-                      src={selectedTagData.png_file}
-                      alt="Programme tag"
-                      className={`photo-tag-overlay-preview ${position}`}
-                    />
-
-                  )}
-
-                </div>
-
-              ) : (
-
-                <div className="photo-tag-empty">
-
-                  <span>
-                    +
-                  </span>
-
-                  <h3>
-                    Choose a photo
-                  </h3>
-
-                  <p>
-                    Your photo preview will appear here.
-                  </p>
-
-                </div>
-
-              )}
-
-            </div>
-
-
-            <div className="photo-tag-note">
-
-              <p>
-                The final downloaded image is generated
-                by the server. The tag is physically merged
-                into the photo, not just displayed as an overlay.
-              </p>
-
-            </div>
-
+                <p role="status" aria-live="polite">
+                  {processing
+                    ? `${progress.completed} of ${progress.total} processed`
+                    : `${completedCount} of ${progress.total} photos tagged successfully`}
+                </p>
+              </div>
+            )}
           </div>
 
+          <div className="photo-tag-preview-panel">
+            <div className="photo-tag-preview-heading">
+              <span>PREVIEW</span>
+              <h3>
+                {photos.length
+                  ? `Your Photos (${photos.length})`
+                  : "Choose Your Photos"}
+              </h3>
+            </div>
+
+            {!photos.length ? (
+              <div className="photo-tag-preview">
+                <div className="photo-tag-empty">
+                  <h3>Select up to five photos</h3>
+                  <p>Your previews will appear here.</p>
+                </div>
+              </div>
+            ) : (
+              <div className="photo-batch-grid">
+                {photos.map((photo, index) => (
+                  <article
+                    className="photo-batch-card"
+                    key={photo.id}
+                  >
+                    <div className="photo-batch-card-heading">
+                      <strong>Photo {index + 1}</strong>
+
+                      <button
+                        type="button"
+                        className="photo-batch-remove"
+                        disabled={processing}
+                        onClick={() => removePhoto(photo.id)}
+                        aria-label={`Remove ${photo.file.name}`}
+                      >
+                        Remove
+                      </button>
+                    </div>
+
+                    <div className="photo-batch-image">
+                      {photo.resultUrl ? (
+                        <img
+                          src={photo.resultUrl}
+                          alt={`Tagged ${photo.file.name}`}
+                        />
+                      ) : (
+                        <div className="photo-tag-live-preview">
+                          <img
+                            src={photo.previewUrl}
+                            alt={photo.file.name}
+                            className="photo-tag-base-image"
+                          />
+
+                          {selectedTagData?.png_file && (
+                            <img
+                              src={selectedTagData.png_file}
+                              alt=""
+                              className={`photo-tag-overlay-preview ${position}`}
+                            />
+                          )}
+                        </div>
+                      )}
+                    </div>
+
+                    <p
+                      className="photo-batch-name"
+                      title={photo.file.name}
+                    >
+                      {photo.file.name}
+                    </p>
+
+                    <p className={`photo-batch-status ${photo.status}`}>
+                      {photo.status === "ready" && "Ready to tag"}
+                      {photo.status === "waiting" && "Waiting"}
+                      {photo.status === "processing" && "Processing..."}
+                      {photo.status === "done" && "Tagged successfully"}
+                      {photo.status === "error" && photo.message}
+                    </p>
+
+                    {photo.resultUrl && (
+                      <a
+                        className="photo-tag-download photo-batch-download"
+                        href={photo.resultUrl}
+                        download={downloadName(photo.file)}
+                      >
+                        Download Tagged Photo
+                      </a>
+                    )}
+                  </article>
+                ))}
+              </div>
+            )}
+
+            <div className="photo-tag-note">
+              <p>
+                Previews show the selected position. Each downloaded
+                image has the programme tag permanently merged into it.
+              </p>
+            </div>
+          </div>
         </div>
-
       </section>
-
     </main>
   );
 };

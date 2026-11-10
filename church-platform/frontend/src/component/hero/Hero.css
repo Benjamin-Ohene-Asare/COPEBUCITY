@@ -450,3 +450,29 @@
   }
 
 }
+
+.hero .info-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.hero .info-icon svg {
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.hero .slider-arrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero .slider-arrow svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}

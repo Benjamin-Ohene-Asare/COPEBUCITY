@@ -23,8 +23,7 @@
     linear-gradient(
       rgba(12, 35, 90, 0.88),
       rgba(17, 48, 110, 0.88)
-    ),
-    url('../../assets/event1.jpg');
+    );
 
   background-size: cover;
   background-position: center;

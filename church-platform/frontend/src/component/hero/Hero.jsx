@@ -1,6 +1,13 @@
 import React, { useEffect, useState } from "react";
-import "./Hero.css";
+import {
+  FaChurch,
+  FaPhoneAlt,
+  FaMapMarkerAlt,
+  FaChevronLeft,
+  FaChevronRight,
+} from "react-icons/fa";
 
+import "./Hero.css";
 import {
   getHeroSlides,
   getSiteSettings,
@@ -12,8 +19,9 @@ const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [loading, setLoading] = useState(true);
 
-  // FETCH HERO DATA
   useEffect(() => {
+    let cancelled = false;
+
     const loadHero = async () => {
       try {
         const [slidesData, settingsData] = await Promise.all([
@@ -21,25 +29,32 @@ const Hero = () => {
           getSiteSettings(),
         ]);
 
-        setSlides(slidesData);
-        setSiteSettings(settingsData);
+        if (!cancelled) {
+          setSlides(Array.isArray(slidesData) ? slidesData : []);
+          setSiteSettings(settingsData);
+        }
       } catch (error) {
         console.error("Failed to load hero:", error);
       } finally {
-        setLoading(false);
+        if (!cancelled) {
+          setLoading(false);
+        }
       }
     };
 
     loadHero();
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
-  // AUTO SLIDER
   useEffect(() => {
     if (slides.length <= 1) return;
 
     const interval = setInterval(() => {
-      setCurrentSlide((prev) =>
-        prev === slides.length - 1 ? 0 : prev + 1
+      setCurrentSlide((previous) =>
+        (previous + 1) % slides.length
       );
     }, 6000);
 
@@ -47,22 +62,35 @@ const Hero = () => {
   }, [slides.length]);
 
   const nextSlide = () => {
-    if (slides.length === 0) return;
+    if (!slides.length) return;
 
-    setCurrentSlide((prev) =>
-      prev === slides.length - 1 ? 0 : prev + 1
+    setCurrentSlide((previous) =>
+      (previous + 1) % slides.length
     );
   };
 
   const previousSlide = () => {
-    if (slides.length === 0) return;
+    if (!slides.length) return;
 
-    setCurrentSlide((prev) =>
-      prev === 0 ? slides.length - 1 : prev - 1
+    setCurrentSlide((previous) =>
+      (previous - 1 + slides.length) % slides.length
     );
   };
 
-  // LOADING
+  const openSlideLink = (value) => {
+    if (!value) return;
+
+    try {
+      const url = new URL(value, window.location.origin);
+
+      if (url.protocol === "https:" || url.protocol === "http:") {
+        window.location.assign(url.href);
+      }
+    } catch {
+      console.error("Invalid hero button URL.");
+    }
+  };
+
   if (loading) {
     return (
       <section className="hero hero-loading">
@@ -71,8 +99,7 @@ const Hero = () => {
     );
   }
 
-  // NO SLIDES
-  if (slides.length === 0) {
+  if (!slides.length) {
     return (
       <section className="hero hero-loading">
         <p>No hero slides available.</p>
@@ -89,54 +116,44 @@ const Hero = () => {
         backgroundImage: `url(${slide.image})`,
       }}
     >
-      {/* OVERLAY */}
-      <div className="hero-overlay"></div>
+      <div className="hero-overlay" aria-hidden="true" />
 
-      {/* HERO CONTENT */}
       <div className="hero-content">
-
         <p className="hero-small-title">
           {slide.small_title}
         </p>
 
-        <div className="hero-line"></div>
+        <div className="hero-line" aria-hidden="true" />
 
-        <h1>
-          {slide.title}
-        </h1>
+        <h1>{slide.title}</h1>
 
         {slide.button_text && (
           <button
+            type="button"
             className="hero-btn"
-            onClick={() => {
-              if (slide.button_url) {
-                window.location.href = slide.button_url;
-              }
-            }}
+            onClick={() => openSlideLink(slide.button_url)}
           >
             {slide.button_text}
           </button>
         )}
-
       </div>
 
-      {/* SLIDER CONTROLS */}
       {slides.length > 1 && (
         <div className="slider-controls">
-
           <button
+            type="button"
             className="slider-arrow"
             onClick={previousSlide}
             aria-label="Previous slide"
           >
-            ‹
+            <FaChevronLeft aria-hidden="true" />
           </button>
 
           <div className="slider-dots">
-
-            {slides.map((_, index) => (
+            {slides.map((item, index) => (
               <button
-                key={index}
+                type="button"
+                key={item.id ?? index}
                 onClick={() => setCurrentSlide(index)}
                 className={
                   currentSlide === index
@@ -144,57 +161,55 @@ const Hero = () => {
                     : "slider-dot"
                 }
                 aria-label={`Go to slide ${index + 1}`}
+                aria-current={
+                  currentSlide === index ? "true" : undefined
+                }
               />
             ))}
-
           </div>
 
           <button
+            type="button"
             className="slider-arrow"
             onClick={nextSlide}
             aria-label="Next slide"
           >
-            ›
+            <FaChevronRight aria-hidden="true" />
           </button>
-
         </div>
       )}
 
-      {/* BOTTOM INFORMATION */}
       {siteSettings && (
         <div className="hero-info">
-
           <div className="info-item">
-            <span className="info-icon">◎</span>
-
-            <span>
-              {siteSettings.church_name}
+            <span className="info-icon">
+              <FaChurch aria-hidden="true" />
             </span>
+
+            <span>{siteSettings.church_name}</span>
           </div>
 
-          <div className="info-divider"></div>
+          <div className="info-divider" aria-hidden="true" />
 
           <div className="info-item">
-            <span className="info-icon">☎</span>
-
-            <span>
-              {siteSettings.phone}
+            <span className="info-icon">
+              <FaPhoneAlt aria-hidden="true" />
             </span>
+
+            <span>{siteSettings.phone}</span>
           </div>
 
-          <div className="info-divider"></div>
+          <div className="info-divider" aria-hidden="true" />
 
           <div className="info-item">
-            <span className="info-icon">⌖</span>
-
-            <span>
-              {siteSettings.location}
+            <span className="info-icon">
+              <FaMapMarkerAlt aria-hidden="true" />
             </span>
-          </div>
 
+            <span>{siteSettings.location}</span>
+          </div>
         </div>
       )}
-
     </section>
   );
 };

@@ -9,9 +9,7 @@ const SermonHero = () => {
 
       <section
         className="sermons-hero"
-        style={{
-          backgroundImage: `url(${sermonHero})`
-        }}
+        
       >
         <div className="sermons-hero-overlay"></div>
 

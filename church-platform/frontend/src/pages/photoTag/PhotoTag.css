@@ -623,3 +623,177 @@
   }
 
 }
+
+/* Batch photo tagging */
+
+.photo-tag-page .photo-tag-container > * {
+  min-width: 0;
+}
+
+.photo-batch-help {
+  margin-top: 8px;
+  color: #697386;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.photo-batch-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.photo-batch-card {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid #e1e7f0;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.photo-batch-card-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.photo-batch-card-heading strong {
+  color: #10265d;
+  font-size: 13px;
+}
+
+.photo-batch-remove {
+  padding: 5px 8px;
+  border: 0;
+  border-radius: 5px;
+  background: #fff0f0;
+  color: #a92737;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.photo-batch-image {
+  overflow: hidden;
+  border-radius: 8px;
+  background: #f0f3f8;
+}
+
+.photo-batch-image > img,
+.photo-batch-image .photo-tag-base-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+}
+
+.photo-batch-image .photo-tag-live-preview {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  line-height: 0;
+}
+
+.photo-batch-image .photo-tag-overlay-preview {
+  position: absolute;
+  top: auto;
+  width: 40%;
+  height: auto;
+  max-height: none;
+  bottom: 2%;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.photo-batch-image .photo-tag-overlay-preview.bottom-left {
+  left: 2%;
+  right: auto;
+  transform: none;
+}
+
+.photo-batch-image .photo-tag-overlay-preview.bottom-center {
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+}
+
+.photo-batch-image .photo-tag-overlay-preview.bottom-right {
+  right: 2%;
+  left: auto;
+  transform: none;
+}
+
+.photo-batch-name {
+  overflow: hidden;
+  margin: 10px 0 5px;
+  color: #526079;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.photo-batch-status {
+  margin: 0;
+  color: #697386;
+  font-size: 12px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.photo-batch-status.done {
+  color: #187745;
+}
+
+.photo-batch-status.processing {
+  color: #175cd3;
+}
+
+.photo-batch-status.error {
+  color: #b42338;
+}
+
+.photo-tag-page .photo-batch-download {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 12px;
+  padding: 11px 8px;
+  border-radius: 7px;
+  background: #0b4db5;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.photo-batch-progress {
+  margin-top: 16px;
+}
+
+.photo-batch-progress progress {
+  display: block;
+  width: 100%;
+  height: 9px;
+  accent-color: #0b4db5;
+}
+
+.photo-batch-progress p {
+  margin-top: 7px;
+  color: #526079;
+  font-size: 12px;
+}
+
+.photo-tag-page button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (max-width: 600px) {
+  .photo-batch-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
